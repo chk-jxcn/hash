@@ -1,0 +1,167 @@
+[root@ACC_OMU9 linux]# uname -a
+Linux ACC_OMU9 2.6.32-279.el6.x86_64 #1 SMP Fri Jun 22 12:19:21 UTC 2012 x86_64 x86_64 x86_64 GNU/Linux
+[root@ACC_OMU9 linux]# ./test 1000000
+set test count: 1000000
+===============begin==============
+insert cost: 0.225291s
+  find cost: 0.136860s
+ erase cost: 0.166162s
+stat: thread:1, count:1000000, lost:0
+=============== end ==============
+===============begin==============
+insert cost: 0.046675s
+  find cost: 0.033716s
+ erase cost: 0.041170s
+stat: thread:4, count:1000000, lost:0
+=============== end ==============
+===============begin==============
+insert cost: 0.011779s
+  find cost: 0.008709s
+ erase cost: 0.010554s
+stat: thread:16, count:1000000, lost:0
+=============== end ==============
+hash name:test
+size:0, hash_node_max_size:1, ability:1125000
+vmalloc:2,  vfree:2, kmalloc:1, kfree:1
+stat: m_fail:0, i_fail:0: i_conf:0, ei_fail:0
+[root@ACC_OMU9 linux]# ./test 1000000
+set test count: 1000000
+===============begin==============
+insert cost: 0.224742s
+  find cost: 0.142307s
+ erase cost: 0.168852s
+stat: thread:1, count:1000000, lost:0
+=============== end ==============
+===============begin==============
+insert cost: 0.047185s
+  find cost: 0.033831s
+ erase cost: 0.040987s
+stat: thread:4, count:1000000, lost:0
+=============== end ==============
+===============begin==============
+insert cost: 0.011773s
+  find cost: 0.008456s
+ erase cost: 0.010427s
+stat: thread:16, count:1000000, lost:0
+=============== end ==============
+hash name:test
+size:0, hash_node_max_size:1, ability:1125000
+vmalloc:2,  vfree:2, kmalloc:1, kfree:1
+stat: m_fail:0, i_fail:0: i_conf:0, ei_fail:0
+[root@ACC_OMU9 linux]# ./test 10000000
+set test count: 10000000
+===============begin==============
+insert cost: 1.939418s
+  find cost: 1.365218s
+ erase cost: 1.671526s
+stat: thread:1, count:10000000, lost:0
+=============== end ==============
+===============begin==============
+insert cost: 0.475442s
+  find cost: 0.337299s
+ erase cost: 0.417477s
+stat: thread:4, count:10000000, lost:0
+=============== end ==============
+===============begin==============
+insert cost: 0.117253s
+  find cost: 0.084256s
+ erase cost: 0.104540s
+stat: thread:16, count:10000000, lost:0
+=============== end ==============
+hash name:test
+size:0, hash_node_max_size:1, ability:11250000
+vmalloc:2,  vfree:2, kmalloc:1, kfree:1
+stat: m_fail:0, i_fail:0: i_conf:0, ei_fail:0
+[root@ACC_OMU9 linux]# ./test 10000000
+set test count: 10000000
+===============begin==============
+insert cost: 2.225114s
+  find cost: 1.633183s
+ erase cost: 1.988236s
+stat: thread:1, count:10000000, lost:0
+=============== end ==============
+===============begin==============
+insert cost: 0.538504s
+  find cost: 0.396354s
+ erase cost: 0.415515s
+stat: thread:4, count:10000000, lost:0
+=============== end ==============
+===============begin==============
+insert cost: 0.142097s
+  find cost: 0.120089s
+ erase cost: 0.109001s
+stat: thread:16, count:10000000, lost:0
+=============== end ==============
+hash name:test
+size:0, hash_node_max_size:1, ability:11250000
+vmalloc:2,  vfree:2, kmalloc:1, kfree:1
+stat: m_fail:0, i_fail:0: i_conf:0, ei_fail:0
+[root@ACC_OMU9 linux]# ./test 10000000
+set test count: 10000000
+===============begin==============
+insert cost: 1.893715s
+  find cost: 1.582601s
+ erase cost: 1.990789s
+stat: thread:1, count:10000000, lost:0
+=============== end ==============
+===============begin==============
+insert cost: 0.587261s
+  find cost: 0.389339s
+ erase cost: 0.494911s
+stat: thread:4, count:10000000, lost:0
+=============== end ==============
+===============begin==============
+insert cost: 0.137480s
+  find cost: 0.098991s
+ erase cost: 0.124205s
+stat: thread:16, count:10000000, lost:0
+=============== end ==============
+hash name:test
+size:0, hash_node_max_size:1, ability:11250000
+vmalloc:2,  vfree:2, kmalloc:1, kfree:1
+stat: m_fail:0, i_fail:0: i_conf:0, ei_fail:0
+[root@ACC_OMU9 linux]# less /proc/cpuinfo 
+processor       : 0
+vendor_id       : GenuineIntel
+cpu family      : 6
+model           : 45
+model name      : Intel(R) Xeon(R) CPU E5-2648L 0 @ 1.80GHz
+stepping        : 7
+cpu MHz         : 1200.000
+cache size      : 20480 KB
+physical id     : 0
+siblings        : 16
+core id         : 0
+cpu cores       : 8
+apicid          : 0
+initial apicid  : 0
+fpu             : yes
+fpu_exception   : yes
+cpuid level     : 13
+wp              : yes
+flags           : fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 x2apic popcnt aes xsave avx lahf_lm ida arat epb xsaveopt pln pts dts tpr_shadow vnmi flexpriority ept vpid
+bogomips        : 3599.98
+clflush size    : 64
+cache_alignment : 64
+address sizes   : 46 bits physical, 48 bits virtual
+power management:
+
+processor       : 1
+vendor_id       : GenuineIntel
+cpu family      : 6
+model           : 45
+model name      : Intel(R) Xeon(R) CPU E5-2648L 0 @ 1.80GHz
+stepping        : 7
+cpu MHz         : 1200.000
+cache size      : 20480 KB
+physical id     : 0
+siblings        : 16
+core id         : 1
+cpu cores       : 8
+apicid          : 2
+initial apicid  : 2
+fpu             : yes
+fpu_exception   : yes
+cpuid level     : 13
+wp              : yes
+flags           : fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm p[root@ACC_OMU9 linux]# 
