@@ -753,9 +753,7 @@ HashRetCode hash_erase(HashHandle handle, HashKey hash_key, const void* const ke
     }
 
     HASH_CHECK_RET(hash, kHashSucc);
-    hash_lock_lock(&hash->lock);
     hash_node_container_erase(hash->node_container, hash->data_node_pool, hash_key, key, key_len);
-    hash_lock_unlock(&hash->lock);
     return kHashSucc;
 }
 HashRetCode hash_erase_ts(HashHandle handle, HashKey hash_key, const void* const key, U32 key_len)
