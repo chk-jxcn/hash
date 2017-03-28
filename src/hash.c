@@ -1,7 +1,10 @@
-/* Copyright (c) 2017.3.16, luozhongjie <l.zhjie@qq.com> */
-
 #include "hash.h"
-
+#if defined(WINDOWS)
+#include <windows.h> // sleep
+#endif
+#if defined(LINUX)
+#include <unistd.h> // usleep
+#endif
 // 内部函数均不做参数检查
 
 typedef unsigned long HashNodeIndex;
@@ -17,70 +20,45 @@ static const int hash_default_value_len = sizeof(long);
 #define hash_default_value_len 8
 #endif
 
-// 支持递归
-typedef struct SLocalLock
-{
-    atomic_t flag;
-} MyLocalLock;
-static inline void lock_init(MyLocalLock* lock)
-{
-    atomic_set(&lock->flag, -1);
-}
-static inline void lock_lock(MyLocalLock* lock)
-{
-    while(atomic_read(&lock->flag) >= 0 &&
-            atomic_inc_and_test(&lock->flag));
-}
-static inline void lock_unlock(MyLocalLock* lock)
-{
-    atomic_set(&lock->flag, -1);
-}
 typedef struct SHashStatistic
 {
-    atomic_t vmalloc;
-    atomic_t vfree;
-    atomic_t kmalloc;
-    atomic_t kfree;
+    U32 vmalloc;
+    U32 vfree;
+    U32 kmalloc;
+    U32 kfree;
 
-    atomic_t insert_failed;
-    atomic_t insert_failed_when_expand;
-    atomic_t malloc_failed;
-    atomic_t insert_conflict;
+    U32 thread_conflict_times;
+
+    U32 insert_failed;
+    U32 insert_failed_when_expand;
+    U32 malloc_failed;
+    U32 insert_conflict;
 } HashStatistic;
 
-static HashStatistic g_stat = {{0}};
+static HashStatistic g_stat = {0};
 
 
 void* hash_vmalloc(U32 length)
 {
     void* ptr = vmalloc(length);
-    atomic_inc(&g_stat.vmalloc);
+    g_stat.vmalloc ++;
     return ptr;
 }
 void hash_vfree(void* ptr)
 {
-    atomic_inc(&g_stat.vfree);
+    g_stat.vfree ++;
     vfree( ptr);
 }
 void* hash_kmalloc(U32 length)
 {
     void* ptr = kmalloc(length, 0);
-    atomic_inc(&g_stat.kmalloc);
+    g_stat.kmalloc ++;
     return ptr;
 }
 void hash_kfree(void* ptr)
 {
-    atomic_inc(&g_stat.kfree);
+    g_stat.kfree ++;
     kfree(ptr);
-}
-
-void stat_item_inc(atomic_t* item)
-{
-    atomic_inc(item);
-}
-U32 stat_item_value(atomic_t* item)
-{
-    return (U32)atomic_read(item);
 }
 
 typedef struct SDataContainer
@@ -122,7 +100,6 @@ HashRetCode data_container_set(DataContainer* handle, const void* const value, U
         data_container_destroy(handle);
         handle->value = value_new;
     }
-
     handle->length = len;
 
     if(value)
@@ -191,6 +168,7 @@ bool hash_data_value_copy(HashData* data, void* const value_buffer, const U16 bu
 typedef struct SHashPoolNode
 {
     HashNodeIndex data_node_index;
+    HashNodeIndex pos;
 } HashPoolNode;
 typedef struct SHashDataNode
 {
@@ -202,9 +180,8 @@ typedef struct SHashDataNode
 typedef struct SHashDataNodePool
 {
     HashSize ability;
-    MyLocalLock lock;
     HashSize max_pop_count;
-    HashSize pop_counter;
+    HashSize pop_counter; 
     HashDataNode* node_container;
 } HashDataNodePool;
 HashDataNodePool* hash_data_node_pool_malloc(HashSize count)
@@ -213,40 +190,41 @@ HashDataNodePool* hash_data_node_pool_malloc(HashSize count)
     HashDataNode* cursor;
     HashSize node_size = sizeof(HashDataNode) * count;
     HashDataNodePool* handle = (HashDataNodePool*)hash_vmalloc(sizeof(HashDataNodePool) + node_size);
-
     if(!handle)
     {
         return 0;
     }
-
-    lock_init(&handle->lock);
     handle->ability = count;
     handle->max_pop_count = 0;
     handle->pop_counter = 0;
     handle->node_container = (HashDataNode*)((char*)handle + sizeof(HashDataNodePool));
     cursor = handle->node_container;
-
     for(i = 0; i < count; ++i, ++cursor)
     {
         cursor->pool_node.data_node_index = i;
+        cursor->pool_node.pos = i;
     }
-
     return handle;
 }
 HashDataNodePool* hash_data_node_pool_clone(HashSize new_count, HashDataNodePool* old)
 {
     // if(new_count <= old->count) // 异常
+    HashSize i;
+    HashDataNode* data_node;
     HashDataNodePool* new_pool = hash_data_node_pool_malloc(new_count);
-
     if(!new_pool)
     {
         return 0;
     }
-
     new_pool->ability = new_count;
     new_pool->max_pop_count = old->max_pop_count;
     new_pool->pop_counter = old->pop_counter;
     memcpy(new_pool->node_container, old->node_container, sizeof(HashDataNode) * old->ability);
+    for(i = 0; i< new_pool->pop_counter; ++i)
+    {
+        data_node = new_pool->node_container + new_pool->node_container[i].pool_node.data_node_index;
+        hash_data_correct(&data_node->data); //hasharray_expand, memcpy后 异常数据修复
+    }
     return new_pool;
 }
 void hash_data_node_pool_free(HashDataNodePool* handle)
@@ -257,46 +235,44 @@ void hash_data_node_pool_free(HashDataNodePool* handle)
 HashDataNode* hash_data_node_pool_pop(HashDataNodePool* handle)
 {
     HashNodeIndex index;
-    lock_lock(&handle->lock);
-
+    HashDataNode* node;
     if(handle->pop_counter >= handle->ability)
     {
-        lock_unlock(&handle->lock);
         return 0;
     }
-
     index = handle->node_container[handle->pop_counter].pool_node.data_node_index;
+    node = handle->node_container + index;
+    node->pool_node.pos = handle->pop_counter;
     handle->pop_counter++;
-
     if(handle->pop_counter > handle->max_pop_count)
     {
         handle->max_pop_count = handle->pop_counter;
     }
-
-    lock_unlock(&handle->lock);
-    return handle->node_container + index;
+    return node;
 }
 // 放回资源， 可能会打乱原有顺序
 void hash_data_node_pool_push(HashDataNodePool* handle, HashDataNode* node)
 {
     HashPoolNode* last_busy;
     HashNodeIndex temp;
-    lock_lock(&handle->lock);
+    HashNodeIndex pos = node->pool_node.pos;
+
+    node = handle->node_container + pos;
     --handle->pop_counter;
     last_busy = &handle->node_container[handle->pop_counter].pool_node;
+    handle->node_container[last_busy->data_node_index].pool_node.pos = pos;
     temp = last_busy->data_node_index;
     last_busy->data_node_index = node->pool_node.data_node_index ;
     node->pool_node.data_node_index = temp;
-    lock_unlock(&handle->lock);
 }
 
 HashDataNode* hash_data_node_pool_get(HashDataNodePool* handle, HashNodeIndex pos)
 {
+
     if(pos >= handle->pop_counter)
     {
         return 0;
     }
-
     return handle->node_container + handle->node_container[pos].pool_node.data_node_index;
 }
 
@@ -304,9 +280,8 @@ typedef struct SHashNodeArray
 {
     U16 size;
     U16 ability;
-    MyLocalLock lock;
     HashDataNode* local_container[2]; // 初始化容量， 超过容量动态分配内存
-    HashDataNode** hash_array_datas;
+    HashDataNode** hash_array_datas; 
 } HashNodeArray;
 
 void hashnodearray_init(HashNodeArray* handle)
@@ -314,12 +289,9 @@ void hashnodearray_init(HashNodeArray* handle)
     handle->ability = sizeof(handle->local_container) / sizeof(handle->local_container[0]);
     handle->size = 0;
     handle->hash_array_datas = handle->local_container;
-    lock_init(&handle->lock);
 }
 void hashnodearray_destroy(HashNodeArray* handle)
 {
-    lock_lock(&handle->lock);
-
     if(handle->local_container != handle->hash_array_datas)
     {
         hash_vfree(handle->hash_array_datas);
@@ -335,9 +307,7 @@ HashRetCode hashnodearray_expand(HashNodeArray* handle)
     {
         return kHashArrayError; // 过多冲突， 返回失败
     }
-
     data_new = (HashDataNode**)hash_vmalloc(new_ability * sizeof(HashDataNode*));
-
     if(data_new)
     {
         memcpy(data_new, data_old, sizeof(HashDataNode*)*handle->size);
@@ -349,7 +319,6 @@ HashRetCode hashnodearray_expand(HashNodeArray* handle)
             hash_vfree(data_old);
         }
     }
-
     else
     {
         return kHashMemoryError;
@@ -361,13 +330,13 @@ U16 hashnodearray_find_index(HashNodeArray* handle, const void* const key, U32 k
 {
     U16 i = 0;
     HashDataNode** ptr = handle->hash_array_datas;
-    HashDataNode* element_node = 0;
+    HashDataNode* data_node = 0;
 
     for(i = 0; i < handle->size; ++i, ++ptr)
     {
-        element_node = *ptr;
+        data_node = *ptr;
 
-        if(hash_data_compare_key(&element_node->data, key, key_len) == true)
+        if(hash_data_compare_key(&data_node->data, key, key_len) == true)
         {
             return i;
         }
@@ -383,7 +352,6 @@ HashDataNode* hashnodearray_find_node(HashNodeArray* handle, const void* const k
     {
         return 0;
     }
-
     return handle->hash_array_datas[index];
 }
 HashRetCode hashnodearray_push_back(HashNodeArray* handle, HashDataNode* data)
@@ -402,8 +370,9 @@ HashRetCode hashnodearray_push_back(HashNodeArray* handle, HashDataNode* data)
 }
 void hashnodearray_erase_by_index(HashNodeArray* handle, U16 index)
 {
+    handle->hash_array_datas[index] = handle->hash_array_datas[handle->size-1];
     handle->size--;
-    handle->hash_array_datas[index] = handle->hash_array_datas[handle->size];
+    
 }
 // public
 HashRetCode hashnodearray_add(HashNodeArray* handle, HashDataNodePool* data_node_pool,
@@ -411,14 +380,12 @@ HashRetCode hashnodearray_add(HashNodeArray* handle, HashDataNodePool* data_node
                               const void* const value, U32 value_len)
 {
     HashDataNode* data_node = 0;
-    lock_lock(&handle->lock);
 
     if(handle->size)
     {
         if(hashnodearray_find_node(handle, key, key_len) != 0)
         {
-            lock_unlock(&handle->lock);
-            atomic_inc(&g_stat.insert_conflict);
+            g_stat.insert_conflict ++;
             return kHashRecordExist;
         }
     }
@@ -428,70 +395,55 @@ HashRetCode hashnodearray_add(HashNodeArray* handle, HashDataNodePool* data_node
     if(data_node)
     {
         HashData* data = &data_node->data;
-
-        if(hashnodearray_push_back(handle, data_node) != kHashSucc)
-        {
-            hash_data_node_pool_push(data_node_pool, data_node);
-            lock_unlock(&handle->lock);
-            return kHashMemoryError;
-        }
-
         hash_data_init(data, hash_key);
-
         if(hash_data_set_key(data, key, key_len) != kHashSucc ||
                 hash_data_set_value(data, value, value_len) != kHashSucc)
         {
             hash_data_destory(data);
+            return kHashMemoryError;
+        }
+        if(hashnodearray_push_back(handle, data_node) != kHashSucc)
+        {
+            hash_data_destory(data);
             hash_data_node_pool_push(data_node_pool, data_node);
-            lock_unlock(&handle->lock);
             return kHashMemoryError;
         }
     }
-
     else
     {
-        lock_unlock(&handle->lock);
         return kHashError;
     }
-
-    lock_unlock(&handle->lock);
     return kHashSucc;
 }
 void hashnodearray_erase(HashNodeArray* handle, HashDataNodePool* data_node_pool, const void* const key, U32 key_len)
 {
     U16 index;;
-    lock_lock(&handle->lock);
     index = hashnodearray_find_index(handle, key, key_len);
 
     if(index < handle->size)
     {
         HashDataNode* data_node = handle->hash_array_datas[index];
+        hashnodearray_erase_by_index(handle, index);
         hash_data_destory(&data_node->data);
         hash_data_node_pool_push(data_node_pool, data_node);
-        hashnodearray_erase_by_index(handle, index);
     }
 
-    lock_unlock(&handle->lock);
 }
 HashRetCode hashnodearray_find_and_set(HashNodeArray* handle, const void* const key, U32 key_len, void* const value, U32 value_len)
 {
     HashDataNode* data_node = 0;
-    lock_lock(&handle->lock);
     data_node = hashnodearray_find_node(handle, key, key_len);
 
     if(!data_node)
     {
-        lock_unlock(&handle->lock);
         return kHashError;
     }
 
     if(hash_data_value_copy(&data_node->data, value, value_len) == false)
     {
-        lock_unlock(&handle->lock);
         return kHashInvalidOutValueLen;
     }
 
-    lock_unlock(&handle->lock);
     return kHashSucc;
 }
 
@@ -509,7 +461,7 @@ HashNodeContainer* hash_node_container_malloc(HashSize size)
 
     if(size > ((~(HashSize)0 - sizeof(HashNodeContainer) / sizeof(HashNodeArray))))
     {
-        atomic_inc(&g_stat.malloc_failed);
+        g_stat.malloc_failed ++;
         return 0;
     }
 
@@ -551,7 +503,12 @@ HashNodeArray* hash_node_container_get_node_arry(HashNodeContainer* handle, Hash
 HashRetCode hash_node_container_push(HashNodeContainer* handle, HashDataNode* node)
 {
     HashNodeArray* node_array = hash_node_container_get_node_arry(handle, node->data.hash_key);
-    return hashnodearray_push_back(node_array, node);
+    HashRetCode ret = hashnodearray_push_back(node_array, node);
+    if(node_array->size > handle->max_node_array_size)
+    {
+        handle->max_node_array_size = node_array->size;
+    }
+    return ret;
 }
 
 // hash_node public
@@ -584,15 +541,61 @@ void hash_node_container_erase(HashNodeContainer* handle, HashDataNodePool* data
     HashNodeArray* node_array = hash_node_container_get_node_arry(handle, hash_key);
     hashnodearray_erase(node_array, data_node_pool, key, key_len);
 }
+#if defined(WINDOWS)
+typedef struct SHashLock {
+    CRITICAL_SECTION mutex;
+}HashLock;
+void hash_lock_init(HashLock* lock)
+{
+    InitializeCriticalSection(&lock->mutex);
+}
+void hash_lock_lock(HashLock* lock)
+{
+    EnterCriticalSection(&lock->mutex);
+}
+void hash_lock_unlock(HashLock* lock)
+{
+    LeaveCriticalSection(&lock->mutex);
+}
+void hash_lock_destroy(HashLock* lock)
+{
+    DeleteCriticalSection(&lock->mutex);
+}
+void hash_sleep(U32 millisecond) {
+    Sleep(millisecond);
+}
+#endif
+#if defined(LINUX)
 
+typedef struct SHashLock {
+    pthread_mutex_t mutex;
+}HashLock;
+void hash_lock_init(HashLock* lock)
+{
+    pthread_mutex_init(&lock->mutex, 0);
+}
+void hash_lock_lock(HashLock* lock)
+{
+    pthread_mutex_lock(&lock->mutex);
+}
+void hash_lock_unlock(HashLock* lock)
+{
+    pthread_mutex_unlock(&lock->mutex);
+}
+void hash_lock_destroy(HashLock* lock)
+{
+    pthread_mutex_destroy(&lock->mutex);
+}
+void hash_sleep(U32 millisecond) {
+    usleep(millisecond*1000);
+}
+#endif
 static const U32 g_hash_fingerprint = 0x12345678;
 typedef struct SMyHash
 {
     volatile U32 fingerprint;
     char name[48];
-    MyLocalLock expand_lock;
-    atomic_t call_counter;
-    atomic_t stop_the_world;
+    HashLock lock; // 只做单线程， 自测结果：多线程性能不稳定
     bool expand_disabled; // 内存申请失败时赋值true
     U32 expand_when_percent; //
     HashSize expand_when_size; //
@@ -619,24 +622,22 @@ HashSize hash_get_size(MyHash* handle)
 }
 void hash_set_expand_percent(MyHash* handle, U32 percent)
 {
-    if(percent < g_min_expand_percent)
-    {
+    if(percent < g_min_expand_percent) {
         percent = g_default_expand_percent;
     }
-
-    handle->expand_when_percent = percent;
-    handle->expand_when_size = handle->data_node_pool->ability * percent / 100;
+    if(percent > 100) {
+        percent = 100;
+    }
+    handle->expand_when_percent = percent; 
+    handle->expand_when_size = handle->data_node_pool->ability *percent/100;
 }
 
 //TODO  hash_expand失败原因为内存不足， 需要设置重试间隔
 void hash_expand(MyHash* hash)
 {
-    atomic_inc(&hash->stop_the_world);
-    lock_lock(&hash->expand_lock);
-
     if(hash->expand_disabled == true) // hash_expand失败后赋值true
     {
-        goto exit;
+        return ;
     }
 
     if(hash_get_size(hash)  >= hash->expand_when_size)
@@ -645,19 +646,20 @@ void hash_expand(MyHash* hash)
         HashDataNodePool* data_node_pool_new;
         HashNodeContainer* hash_node_container = 0;
 
-        while(atomic_read(&hash->call_counter)); // 等待所有调用退出
-
         data_node_pool_new = hash_data_node_pool_clone(new_size, hash->data_node_pool);
-
-        if(!data_node_pool_new)
+        if(data_node_pool_new)
         {
-            stat_item_inc(&g_stat.malloc_failed);
-            hash->expand_disabled = true;
-            goto exit;
+            HashDataNodePool* temp = hash->data_node_pool;
+            hash->data_node_pool = data_node_pool_new;
+            hash_data_node_pool_free(temp);
         }
+        else 
+        {
+            hash->expand_disabled = true;
+            return ;
+        }
+        
 
-        hash_data_node_pool_free(hash->data_node_pool);
-        hash->data_node_pool = data_node_pool_new;
         hash->expand_when_size *= 2;
         hash_node_container = hash_node_container_malloc(new_size);
 
@@ -665,25 +667,20 @@ void hash_expand(MyHash* hash)
         {
             HashDataNode* data_node = 0;
             HashNodeIndex i = 0;
-            hash_node_container_free(hash->node_container);
-
+            HashNodeContainer* temp = hash->node_container;
             while(data_node = hash_data_node_pool_get(hash->data_node_pool, i++), data_node)
             {
-                hash_data_correct(&data_node->data); //hasharray_expand, memcpy后 异常数据修复
                 hash_node_container_push(hash_node_container, data_node);
             }
+            hash->node_container = hash_node_container;
+            hash_node_container_free(temp);
         }
-
         else
         {
             // 导致哈希桶冲突
             hash->expand_disabled = true;
         }
     }
-
-exit:
-    lock_unlock(&hash->expand_lock);
-    atomic_dec(&hash->stop_the_world);
 }
 
 // public method
@@ -693,19 +690,9 @@ void hash_free(HashHandle handle)
     HashDataNode* data_node = 0;
     HashNodeIndex i = 0;
     HASH_CHECK_RET(hash, );
-    lock_lock(&hash->expand_lock);
-
-    if(hash->fingerprint == 0)
-    {
-        return ;
-    }
 
     hash->fingerprint = 0; // 句柄置为无效
-
-    while(atomic_read(&hash->stop_the_world));
-
-    while(atomic_read(&hash->call_counter)); // 等待正在进行的调用终止
-
+    hash_sleep(10); // 延迟10ms释放，
     if(hash->node_container)
     {
         hash_node_container_free(hash->node_container);
@@ -717,6 +704,7 @@ void hash_free(HashHandle handle)
     }
 
     hash_data_node_pool_free(hash->data_node_pool);
+    hash_lock_destroy(&hash->lock);
     hash_kfree(hash);
 }
 
@@ -732,13 +720,11 @@ HashHandle hash_malloc(const char* name, HashSize start_size, U32 expand_percent
     hash->fingerprint = g_hash_fingerprint;
     strncpy(hash->name, name, sizeof(hash->name));
     start_size = start_size < 8 ? 8 : start_size; // 最小值取8
-    atomic_set(&hash->call_counter, 0);
-    atomic_set(&hash->stop_the_world, 0);
-    lock_init(&hash->expand_lock);
     hash->node_container = 0;
+    hash_lock_init(&hash->lock);
+
     hash->expand_disabled = false;
     hash->data_node_pool = hash_data_node_pool_malloc(start_size);
-
     if(!hash->data_node_pool)
     {
         hash_free(hash);
@@ -753,7 +739,6 @@ HashHandle hash_malloc(const char* name, HashSize start_size, U32 expand_percent
         hash_free(hash);
         return 0;
     }
-
     hash_set_expand_percent(hash, expand_percent);
     return hash;
 }
@@ -768,69 +753,132 @@ HashRetCode hash_erase(HashHandle handle, HashKey hash_key, const void* const ke
     }
 
     HASH_CHECK_RET(hash, kHashSucc);
-
-    while(atomic_read(&hash->stop_the_world));
-
-    atomic_inc(&hash->call_counter);
+    hash_lock_lock(&hash->lock);
     hash_node_container_erase(hash->node_container, hash->data_node_pool, hash_key, key, key_len);
-    atomic_dec(&hash->call_counter);
+    hash_lock_unlock(&hash->lock);
+    return kHashSucc;
+}
+HashRetCode hash_erase_ts(HashHandle handle, HashKey hash_key, const void* const key, U32 key_len)
+{
+    MyHash* hash = (MyHash*)handle;
+    HASH_CHECK_RET(hash, kHashSucc);
+    hash_lock_lock(&hash->lock);
+    hash_erase(handle, hash_key, key, key_len);
+    hash_lock_unlock(&hash->lock);
     return kHashSucc;
 }
 HashRetCode hash_insert(HashHandle handle, HashKey hash_key, const void* const key, U32 key_len, const void* const value, U32 value_len)
 {
     HashRetCode ret = kHashSucc;
     MyHash* hash = (MyHash*)handle;
+
     HASH_CHECK_RET(hash, kHashError);
 
     if(!key || !key_len || !value || !value_len)
     {
         return kHashInvalidParams;
     }
-
     if(hash->data_node_pool->pop_counter >= hash->expand_when_size)
     {
         hash_expand(hash);
     }
-
-    atomic_inc(&hash->call_counter);
     ret = hash_node_container_add(hash->node_container, hash->data_node_pool, hash_key, key, key_len, value, value_len);
-
+    
     if(ret != kHashSucc)
     {
-        stat_item_inc(&g_stat.insert_failed);
+        g_stat.insert_failed ++;
     }
-
-    atomic_dec(&hash->call_counter);
+    return ret;
+}
+HashRetCode hash_insert_ts(HashHandle handle, HashKey hash_key, const void* const key, U32 key_len, const void* const value, U32 value_len)
+{
+    HashRetCode ret;
+    MyHash* hash = (MyHash*)handle;
+    HASH_CHECK_RET(hash, kHashError);
+    hash_lock_lock(&hash->lock);
+    ret = hash_insert(handle, hash_key, key, key_len, value, value_len);
+    hash_lock_unlock(&hash->lock);
     return ret;
 }
 HashRetCode hash_find(HashHandle handle, HashKey hash_key, void* key, U32 key_len, void* const value, U32 value_len)
 {
     HashRetCode ret = kHashSucc;
     MyHash* hash = (MyHash*)handle;
-
+    HashNodeArray* node_array;
+    HashDataNode* data_node;
+    U16 index;
     if(!key || !key_len)
     {
         return kHashInvalidParams;
     }
 
     HASH_CHECK_RET(hash, kHashError);
+    // 性能优化， 函数调用全展开
+    //ret = hash_node_container_find(hash->node_container, hash->data_node_pool, hash_key, key, key_len, value, value_len);
+    node_array = &hash->node_container->nodes_[hash_key % hash->node_container->ablility];
 
-    while(atomic_read(&hash->stop_the_world));
+    for(index = 0; index < node_array->size; ++index)
+    {
+        data_node = node_array->hash_array_datas[index];
 
-    atomic_inc(&hash->call_counter);
-    ret = hash_node_container_find(hash->node_container, hash->data_node_pool, hash_key, key, key_len, value, value_len);
-    atomic_dec(&hash->call_counter);
+        if(data_node->data.key.length == key_len &&
+            memcmp(data_node->data.key.value, key, key_len) == 0)
+        {
+            break;
+        }
+    }
+
+    if(index >= node_array->size)
+    {
+        return kHashError;
+    }
+
+    if(value_len < data_node->data.value.length)
+    {
+        hash_lock_unlock(&hash->lock);
+    }
+    memcpy(value, data_node->data.value.value,data_node->data.value.length);
     return ret;
 }
+HashRetCode hash_find_ts(HashHandle handle, HashKey hash_key, const void* const key, U32 key_len, const void* const value, U32 value_len)
+{
+    HashRetCode ret;
+    MyHash* hash = (MyHash*)handle;
+    HASH_CHECK_RET(hash, kHashError);
+    hash_lock_lock(&hash->lock);
+    ret = hash_find_ts(handle, hash_key, key, key_len, value, value_len);
+    hash_lock_unlock(&hash->lock);
+    return ret;
+}
+
+void* hash_foreach_ts(HashHandle handle, hash_foreach_func func, void* param)
+{
+    void* ptr;
+    HashDataNode* data_node;
+    HashNodeIndex index = 0;
+    HashData* data;
+    MyHash* hash = (MyHash*)handle;
+    HASH_CHECK_RET(hash, 0);
+    hash_lock_lock(&hash->lock);
+    while(data_node = hash_data_node_pool_get(hash->data_node_pool, index++), data_node)
+    {
+        data = &data_node->data;
+        ptr = func(data->hash_key, 
+            (const char* const)data->key.value, data->key.length, 
+            (const char* const)data->value.value, data->value.length, param);
+        if(ptr) {
+            return ptr;
+        }
+    }
+    hash_lock_unlock(&hash->lock);
+    return 0;
+}
+
 void hash_set_expand_flag(HashHandle handle, bool disable)
 {
     MyHash* hash = (MyHash*)handle;
     HASH_CHECK_RET(hash, );
-    atomic_inc(&hash->call_counter);
-    lock_lock(&hash->expand_lock);
     hash->expand_disabled = disable;
-    lock_unlock(&hash->expand_lock);
-    atomic_dec(&hash->call_counter);
 }
 HashSize hash_max_hash_node_size(HashHandle handle)
 {

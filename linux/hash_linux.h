@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #include <wctype.h>
 #include <string.h>
+#ifndef LINUX
+#define LINUX
+#endif
 
 void* vmalloc(int size)
 {

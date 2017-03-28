@@ -46,10 +46,12 @@ int main(int argn, char** argv)
     }
     {
         HashPerformanceTest<LinuxThread> test;
-        test.Init(1, test_count, handle);
-        test.DoTest();
-        test.Init(4, test_count, handle);
-        test.DoTest();
+       test.Init(1, test_count, handle);
+      test.DoTest();
+//	test.Init(2, test_count, handle);
+//       test.DoTest();
+//test.Init(4, test_count, handle);
+//       test.DoTest();
     }
 
     PrintHashInfo(handle);

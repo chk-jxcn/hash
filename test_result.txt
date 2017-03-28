@@ -1,72 +1,18 @@
 [root@ACC_OMU9 linux]# uname -a
 Linux ACC_OMU9 2.6.32-279.el6.x86_64 #1 SMP Fri Jun 22 12:19:21 UTC 2012 x86_64 x86_64 x86_64 GNU/Linux
-[root@ACC_OMU9 linux]# ./test 1000000
-set test count: 1000000
-===============begin==============
-insert cost: 0.225291s
-  find cost: 0.136860s
- erase cost: 0.166162s
-stat: thread:1, count:1000000, lost:0
-=============== end ==============
-===============begin==============
-insert cost: 0.046675s
-  find cost: 0.033716s
- erase cost: 0.041170s
-stat: thread:4, count:1000000, lost:0
-=============== end ==============
-===============begin==============
-insert cost: 0.011779s
-  find cost: 0.008709s
- erase cost: 0.010554s
-stat: thread:16, count:1000000, lost:0
-=============== end ==============
-hash name:test
-size:0, hash_node_max_size:1, ability:1125000
-vmalloc:2,  vfree:2, kmalloc:1, kfree:1
-stat: m_fail:0, i_fail:0: i_conf:0, ei_fail:0
-[root@ACC_OMU9 linux]# ./test 1000000
-set test count: 1000000
-===============begin==============
-insert cost: 0.224742s
-  find cost: 0.142307s
- erase cost: 0.168852s
-stat: thread:1, count:1000000, lost:0
-=============== end ==============
-===============begin==============
-insert cost: 0.047185s
-  find cost: 0.033831s
- erase cost: 0.040987s
-stat: thread:4, count:1000000, lost:0
-=============== end ==============
-===============begin==============
-insert cost: 0.011773s
-  find cost: 0.008456s
- erase cost: 0.010427s
-stat: thread:16, count:1000000, lost:0
-=============== end ==============
-hash name:test
-size:0, hash_node_max_size:1, ability:1125000
-vmalloc:2,  vfree:2, kmalloc:1, kfree:1
-stat: m_fail:0, i_fail:0: i_conf:0, ei_fail:0
 [root@ACC_OMU9 linux]# ./test 10000000
 set test count: 10000000
 ===============begin==============
-insert cost: 1.939418s
-  find cost: 1.365218s
- erase cost: 1.671526s
+insert cost: 1.668794s
+  find cost: 0.497281s
+ erase cost: 1.635543s
 stat: thread:1, count:10000000, lost:0
 =============== end ==============
 ===============begin==============
-insert cost: 0.475442s
-  find cost: 0.337299s
- erase cost: 0.417477s
+insert cost: 1.478151s
+  find cost: 0.638349s
+ erase cost: 1.346131s
 stat: thread:4, count:10000000, lost:0
-=============== end ==============
-===============begin==============
-insert cost: 0.117253s
-  find cost: 0.084256s
- erase cost: 0.104540s
-stat: thread:16, count:10000000, lost:0
 =============== end ==============
 hash name:test
 size:0, hash_node_max_size:1, ability:11250000
@@ -75,51 +21,22 @@ stat: m_fail:0, i_fail:0: i_conf:0, ei_fail:0
 [root@ACC_OMU9 linux]# ./test 10000000
 set test count: 10000000
 ===============begin==============
-insert cost: 2.225114s
-  find cost: 1.633183s
- erase cost: 1.988236s
+insert cost: 1.344177s
+  find cost: 0.563065s
+ erase cost: 1.394738s
 stat: thread:1, count:10000000, lost:0
 =============== end ==============
 ===============begin==============
-insert cost: 0.538504s
-  find cost: 0.396354s
- erase cost: 0.415515s
+insert cost: 1.457568s
+  find cost: 0.631851s
+ erase cost: 1.619785s
 stat: thread:4, count:10000000, lost:0
-=============== end ==============
-===============begin==============
-insert cost: 0.142097s
-  find cost: 0.120089s
- erase cost: 0.109001s
-stat: thread:16, count:10000000, lost:0
 =============== end ==============
 hash name:test
 size:0, hash_node_max_size:1, ability:11250000
 vmalloc:2,  vfree:2, kmalloc:1, kfree:1
 stat: m_fail:0, i_fail:0: i_conf:0, ei_fail:0
-[root@ACC_OMU9 linux]# ./test 10000000
-set test count: 10000000
-===============begin==============
-insert cost: 1.893715s
-  find cost: 1.582601s
- erase cost: 1.990789s
-stat: thread:1, count:10000000, lost:0
-=============== end ==============
-===============begin==============
-insert cost: 0.587261s
-  find cost: 0.389339s
- erase cost: 0.494911s
-stat: thread:4, count:10000000, lost:0
-=============== end ==============
-===============begin==============
-insert cost: 0.137480s
-  find cost: 0.098991s
- erase cost: 0.124205s
-stat: thread:16, count:10000000, lost:0
-=============== end ==============
-hash name:test
-size:0, hash_node_max_size:1, ability:11250000
-vmalloc:2,  vfree:2, kmalloc:1, kfree:1
-stat: m_fail:0, i_fail:0: i_conf:0, ei_fail:0
+[root@ACC_OMU9 linux]# 
 [root@ACC_OMU9 linux]# less /proc/cpuinfo 
 processor       : 0
 vendor_id       : GenuineIntel

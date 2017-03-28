@@ -1,0 +1,4449 @@
+version: 1
+creator: callgrind-3.8.1
+pid: 3256
+cmd:  ./test 100000
+part: 1
+
+
+desc: I1 cache: 
+desc: D1 cache: 
+desc: LL cache: 
+
+desc: Timerange: Basic block 0 - 17747881
+desc: Trigger: Program termination
+
+positions: line
+events: Ir sysCount sysTime
+summary: 111600267 119 1057
+
+
+ob=(1) /lib64/ld-2.12.so
+fl=(1) ???
+fn=(6) _dl_sysdep_start
+0 271
+cfn=(8) brk
+calls=1 0 
+0 11 1
+0 7
+cfn=(12) sbrk
+calls=1 0 
+0 17
+0 11
+cfn=(14) dl_main
+calls=1 0 
+0 1295251 63 20
+0 51
+cfn=(10) strlen
+calls=1 0 
+0 42
+0 2
+
+fn=(20) _dl_new_object
+0 105
+cfn=(10)
+calls=7 0 
+0 398
+0 56
+cfn=(24) calloc
+calls=7 0 
+0 315 2
+0 91
+cfn=(34) memcpy
+calls=7 0 
+0 197
+0 399
+cfn=(10)
+calls=6 0 
+0 287
+0 203
+cfn=(28) malloc
+calls=6 0 
+0 168
+0 48
+cfn=(52) mempcpy
+calls=6 0 
+0 201
+0 428
+
+fn=(38) rtld_lock_default_lock_recursive
+0 110
+
+fn=(40) rtld_lock_default_unlock_recursive
+0 110
+
+fn=(44) _dl_discover_osversion
+0 15
+cfn=(46) uname
+calls=1 0 
+0 5 1
+0 72
+
+fn=(52)
+0 393
+
+fn=(90) mmap
+0 63
+0 0 21 20
+0 63
+
+fn=(122) _dl_check_map_versions
+0 851
+cfn=(74) _dl_name_match_p
+calls=82 0 
+0 5106
+0 529
+cfn=(124) match_symbol
+calls=5 0 
+0 781
+0 126
+cfn=(124)
+calls=21 0 
+0 3403
+0 1014
+cfn=(24)
+calls=7 0 
+0 284 1
+0 2088
+
+fn=(128) _dl_determine_tlsoffset
+0 84
+
+fn=(150) _dl_higher_prime_number
+0 148
+
+fn=(0) 0x0000000000000b00
+0 2
+cfn=(2) _dl_start
+calls=1 0 
+0 1296346 64 20
+0 14
+cfn=(164) _dl_init
+calls=1 0 
+0 12738 8
+0 3
+cob=(9) /home/luozhongjie/cifs/hash_lzhjie/linux/test
+cfi=(9) ???
+cfn=(440) 0x0000000000400e80
+calls=1 0 
+0 6880858 35 16
+
+fn=(2)
+0 612
+cfn=(4) _dl_setup_hash
+calls=1 0 
+0 24
+0 17
+cfn=(6)
+calls=1 0 
+0 1295663 64 20
+0 30
+
+fn=(32) __libc_memalign
+0 847
+cfn=(90)
+calls=5 0 
+0 30 5
+0 304
+
+fn=(54) _dl_debug_initialize
+0 81
+
+fn=(64) _dl_catch_error
+0 135
+cfn=(66) _dl_initial_error_catch_tsd
+calls=15 0 
+0 30
+0 90
+cfn=(68) __sigsetjmp
+calls=15 0 
+0 285
+0 120
+cfn=(102) openaux
+calls=14 0 
+0 24903 43 20
+cfn=(70) map_doit
+calls=1 0 
+0 2166 8
+0 195
+
+fn=(66)
+0 34
+
+fn=(76) index
+0 699
+
+fn=(84) read
+0 12
+0 0 6
+0 18
+
+fn=(104) _dl_load_cache_lookup
+0 680
+cfn=(110) _dl_cache_libcmp
+calls=31 0 
+0 2906
+0 197
+cfn=(106) _dl_sysdep_read_whole_file
+calls=1 0 
+0 68 4
+0 35
+cfn=(108) bcmp
+calls=1 0 
+0 87
+0 121
+cfn=(110)
+calls=4 0 
+0 387
+0 25
+cfn=(110)
+calls=5 0 
+0 834
+0 197
+
+fn=(146) _dl_protect_relro
+0 75
+cfn=(92) mprotect
+calls=5 0 
+0 25 5
+0 20
+
+fn=(152) free
+0 10
+
+fn=(156) _dl_sysdep_start_cleanup
+0 1
+
+fn=(182) _dl_get_tls_static_info
+0 5
+
+fn=(8)
+0 3
+0 0 1
+0 8
+
+fn=(14)
+0 24
+cfn=(16) process_envvars
+calls=1 0 
+0 301
+0 11
+cfn=(20)
+calls=1 0 
+0 247
+0 9
+cfn=(36) _dl_add_to_namespace_list
+calls=1 0 
+0 31
+0 175
+cfn=(42) strcmp
+calls=1 0 
+0 7
+0 219
+cfn=(4)
+calls=1 0 
+0 24
+0 7
+cfn=(44)
+calls=1 0 
+0 92 1
+0 10
+cfn=(48) _dl_init_paths
+calls=1 0 
+0 562
+0 3
+cfn=(54)
+calls=1 0 
+0 18
+0 43
+cfn=(56) _dl_count_modids
+calls=1 0 
+0 5
+0 12
+cfn=(58) _dl_debug_state
+calls=1 0 
+0 1
+0 11
+cfn=(98) access
+calls=1 0 
+0 11 1
+0 17
+cfn=(100) _dl_map_object_deps
+calls=1 0 
+0 30050 43 20
+0 177
+cfn=(116) _dl_receive_error
+calls=1 0 
+0 14361 1
+0 188
+cfn=(132) _dl_relocate_object
+calls=7 0 
+0 1236560 5
+0 24
+cfn=(148) _dl_add_to_slotinfo
+calls=2 0 
+0 48
+0 42
+cfn=(154) _dl_allocate_tls_init
+calls=1 0 
+0 201
+0 7
+cfn=(156)
+calls=1 0 
+0 1
+0 6
+cfn=(54)
+calls=1 0 
+0 9
+0 3
+cfn=(58)
+calls=1 0 
+0 1
+0 2
+cfn=(158) _dl_unload_cache
+calls=1 0 
+0 15 1
+0 17
+cfn=(132)
+calls=1 0 
+0 7654 1
+0 100
+cfn=(34)
+calls=1 0 
+0 79
+0 8
+cfn=(60) strsep
+calls=1 0 
+0 943
+0 3
+cfn=(60)
+calls=1 0 
+0 4
+0 14
+cfn=(62) do_preload
+calls=1 0 
+0 2250 8
+0 16
+cfn=(126) init_tls
+calls=1 0 
+0 626 2
+0 2
+
+fn=(16)
+0 26
+cfn=(18) _dl_next_ld_env_entry
+calls=1 0 
+0 174
+0 2
+cfn=(18)
+calls=1 0 
+0 6
+0 93
+
+fn=(42)
+0 14417
+cfn=(43) strcmp'2
+calls=1739 0 
+0 115141
+0 2992
+
+fn=(43)
+0 110899
+cfn=(43)
+calls=14322 0 
+0 592210
+0 4242
+
+fn=(70)
+0 9
+cfn=(72) _dl_map_object
+calls=1 0 
+0 2154 8
+0 3
+
+fn=(92)
+0 22
+0 0 11
+0 33
+
+fn=(96) close
+0 14
+0 0 7
+0 21
+
+fn=(106)
+0 10
+cfn=(82) open
+calls=1 0 
+0 5 1
+0 8
+cfn=(88) _fxstat
+calls=1 0 
+0 10 1
+0 8
+cfn=(96)
+calls=1 0 
+0 5 1
+0 14
+cfn=(90)
+calls=1 0 
+0 6 1
+0 2
+
+fn=(120) _dl_check_all_versions
+0 107
+cfn=(122)
+calls=8 0 
+0 14182 1
+0 32
+
+fn=(124)
+0 1795
+cfn=(42)
+calls=26 0 
+0 2103
+0 286
+
+fn=(126)
+0 14
+cfn=(24)
+calls=1 0 
+0 37
+0 56
+cfn=(128)
+calls=1 0 
+0 84
+0 1
+cfn=(130) _dl_allocate_tls_storage
+calls=1 0 
+0 420 1
+0 10
+0 0 1
+0 4
+
+fn=(132)
+0 110877
+cfn=(134) _dl_lookup_symbol_x
+calls=1191 0 
+0 1046210 1
+0 28500
+cfn=(146)
+calls=5 0 
+0 120 5
+0 19740
+cob=(3) /lib64/libc-2.12.so
+cfi=(3) ???
+cfn=(144) strncasecmp
+calls=1 0 
+0 6
+cob=(3)
+cfi=(3)
+cfn=(140) strcasecmp
+calls=1 0 
+0 64
+0 30
+cfn=(34)
+calls=3 0 
+0 146
+0 12508
+cfn=(134)
+calls=3 0 
+0 2176
+0 23837
+
+fn=(138) check_match.12439
+0 49060
+cfn=(42)
+calls=1224 0 
+0 105404
+0 11469
+cfn=(42)
+calls=85 0 
+0 8220
+0 2759
+
+fn=(164)
+0 204
+cob=(2) ???
+cfi=(2) ???
+cfn=(418) 0x0000000004a22448
+calls=1 0 
+0 29
+cob=(2)
+cfi=(2)
+cfn=(288) 0x0000000004c76b30
+calls=1 0 
+0 1857
+cob=(2)
+cfi=(2)
+cfn=(268) 0x0000000004f2cd90
+calls=1 0 
+0 29
+cob=(2)
+cfi=(2)
+cfn=(248) 0x00000000051af618
+calls=1 0 
+0 29
+cob=(3)
+cfi=(3)
+cfn=(228) _init
+calls=1 0 
+0 2135
+0 52
+cob=(2)
+cfi=(2)
+cfn=(166) 0x00000000053c82d0
+calls=1 0 
+0 8397 8
+0 6
+
+fn=(866) _dl_allocate_tls
+0 15
+cob=(3)
+cfi=(3)
+cfn=(868) calloc
+calls=1 0 
+0 290
+0 54
+cfn=(52)
+calls=2 0 
+0 37
+0 8
+cfn=(94) memset
+calls=2 0 
+0 47
+0 50
+
+fn=(10)
+0 1467
+
+fn=(78) expand_dynamic_string_token
+0 13
+cfn=(76)
+calls=1 0 
+0 52
+0 4
+cfn=(10)
+calls=1 0 
+0 73
+0 3
+cfn=(28)
+calls=1 0 
+0 28
+0 13
+cfn=(34)
+calls=1 0 
+0 52
+
+fn=(102)
+0 196
+cfn=(72)
+calls=14 0 
+0 24665 43 20
+0 42
+
+fn=(154)
+0 180
+cfn=(52)
+calls=6 0 
+0 111
+0 24
+cfn=(94)
+calls=6 0 
+0 141
+0 147
+
+fn=(1162) _dl_sort_fini
+0 28
+cfn=(94)
+calls=1 0 
+0 20
+0 60
+cfn=(94)
+calls=6 0 
+0 108
+0 666
+
+fn=(4)
+0 192
+
+fn=(12)
+0 17
+
+fn=(46)
+0 2
+0 0 1
+0 3
+
+fn=(50) _dl_important_hwcaps
+0 60
+cfn=(28)
+calls=1 0 
+0 28
+0 186
+cfn=(52)
+calls=1 0 
+0 22
+0 5
+cfn=(52)
+calls=1 0 
+0 22
+0 3
+
+fn=(68)
+0 285
+
+fn=(80) open_verify
+0 142
+cfn=(82)
+calls=6 0 
+0 30 6
+0 66
+cfn=(84)
+calls=6 0 
+0 30 6
+0 1107
+cfn=(108)
+calls=2 0 
+0 178
+0 8
+
+fn=(88)
+0 49
+0 0 7
+0 21
+
+fn=(100)
+0 1220
+cfn=(76)
+calls=14 0 
+0 458
+0 140
+cfn=(64)
+calls=14 0 
+0 25701 43 20
+0 236
+cfn=(28)
+calls=6 0 
+0 168
+0 66
+cfn=(34)
+calls=6 0 
+0 156
+0 24
+cfn=(34)
+calls=6 0 
+0 156
+0 237
+cfn=(28)
+calls=1 0 
+0 28
+0 116
+cfn=(94)
+calls=1 0 
+0 20
+0 598
+cfn=(94)
+calls=6 0 
+0 108
+0 574
+cfn=(34)
+calls=1 0 
+0 41
+0 3
+
+fn=(114) _dl_next_tls_modid
+0 12
+
+fn=(944) __tls_get_addr
+0 48
+
+fn=(1160) _dl_fini
+0 22
+cob=(4) /lib64/libpthread-2.12.so
+cfi=(4) ???
+cfn=(570) pthread_mutex_lock
+calls=1 0 
+0 23
+0 112
+cfn=(1162)
+calls=1 0 
+0 882
+0 2
+cob=(4)
+cfi=(4)
+cfn=(572) pthread_mutex_unlock
+calls=1 0 
+0 26
+0 117
+cob=(3)
+cfi=(3)
+cfn=(1278) __libc_fini
+calls=1 0 
+0 6
+0 43
+cob=(2)
+cfi=(2)
+cfn=(1260) 0x00000000053d4120
+calls=1 0 
+0 1528
+cob=(2)
+cfi=(2)
+cfn=(1240) 0x00000000051bff78
+calls=1 0 
+0 1528
+cob=(2)
+cfi=(2)
+cfn=(1220) 0x0000000004f6cfb8
+calls=1 0 
+0 1528
+cob=(2)
+cfi=(2)
+cfn=(1198) 0x0000000004ce6398
+calls=1 0 
+0 1571
+cob=(2)
+cfi=(2)
+cfn=(1174) 0x0000000004a22708
+calls=1 0 
+0 1036
+cob=(2)
+cfi=(2)
+cfn=(1164) 0x0000000000405708
+calls=1 0 
+0 22
+0 136
+
+fn=(18)
+0 180
+
+fn=(36)
+0 49
+cfn=(38)
+calls=7 0 
+0 14
+0 240
+cfn=(40)
+calls=6 0 
+0 12
+0 12
+cfn=(40)
+calls=1 0 
+0 2
+0 2
+
+fn=(58)
+0 2
+
+fn=(116)
+0 11
+cfn=(66)
+calls=1 0 
+0 2
+0 7
+cfn=(118) version_check_doit
+calls=1 0 
+0 14331 1
+0 10
+
+fn=(118)
+0 6
+cfn=(120)
+calls=1 0 
+0 14321 1
+0 4
+
+fn=(130)
+0 7
+cfn=(32)
+calls=1 0 
+0 50 1
+0 316
+cfn=(24)
+calls=1 0 
+0 37
+0 10
+
+fn=(136) do_lookup_x
+0 284415
+cfn=(38)
+calls=48 0 
+0 96
+0 5805
+cfn=(40)
+calls=48 0 
+0 96
+0 2036
+cfn=(74)
+calls=388 0 
+0 19759
+0 1944
+cfn=(150)
+calls=2 0 
+0 148
+0 8
+cfn=(24)
+calls=2 0 
+0 99 1
+0 2944
+cfn=(152)
+calls=2 0 
+0 10
+0 19
+cfn=(24)
+calls=1 0 
+0 37
+0 61756
+cfn=(138)
+calls=1228 0 
+0 176912
+0 12684
+
+fn=(148)
+0 48
+
+fn=(28)
+0 123
+cfn=(32)
+calls=41 0 
+0 1131 4
+
+fn=(62)
+0 17
+cfn=(64)
+calls=1 0 
+0 2223 8
+0 10
+
+fn=(94)
+0 1665
+
+fn=(108)
+0 265
+
+fn=(134)
+0 491855
+cfn=(136)
+calls=1239 0 
+0 568768 1
+0 43235
+
+fn=(180) _dl_fixup
+0 1968
+cfn=(134)
+calls=24 0 
+0 29979
+0 252
+cfn=(134)
+calls=21 0 
+0 25493
+0 1503
+cob=(3)
+cfi=(3)
+cfn=(1010) bcmp
+calls=1 0 
+0 7
+cob=(3)
+cfi=(3)
+cfn=(686) memset
+calls=2 0 
+0 14
+cob=(3)
+cfi=(3)
+cfn=(590) strncpy
+calls=1 0 
+0 7
+0 8
+
+fn=(24)
+0 171
+cfn=(28)
+calls=19 0 
+0 638 4
+
+fn=(48)
+0 14
+cfn=(50)
+calls=1 0 
+0 326
+0 3
+cfn=(28)
+calls=1 0 
+0 28
+0 13
+cfn=(28)
+calls=1 0 
+0 28
+0 150
+
+fn=(56)
+0 5
+
+fn=(60)
+0 947
+
+fn=(72)
+0 1228
+cfn=(74)
+calls=76 0 
+0 4706
+0 347
+cfn=(76)
+calls=6 0 
+0 189
+0 18
+cfn=(78)
+calls=1 0 
+0 238
+0 12
+cfn=(80)
+calls=1 0 
+0 206 2
+0 105
+cfn=(86) _dl_map_object_from_fd
+calls=6 0 
+0 9755 35 20
+0 34
+cfn=(10)
+calls=5 0 
+0 315
+0 120
+cfn=(104)
+calls=5 0 
+0 5537 4
+0 85
+cfn=(80)
+calls=5 0 
+0 1355 10
+0 25
+cfn=(112) local_strdup
+calls=5 0 
+0 730
+0 718
+cfn=(42)
+calls=41 0 
+0 973
+0 123
+
+fn=(82)
+0 14
+0 0 7
+0 21
+
+fn=(86)
+0 102
+cfn=(54)
+calls=6 0 
+0 54
+0 30
+cfn=(88)
+calls=6 0 
+0 60 6
+0 369
+cfn=(20)
+calls=6 0 
+0 2649 2
+0 1105
+cfn=(114)
+calls=2 0 
+0 12
+0 838
+cfn=(90)
+calls=6 0 
+0 36 6
+0 306
+cfn=(94)
+calls=6 0 
+0 1221
+0 204
+cfn=(90)
+calls=6 0 
+0 36 6 20
+0 1797
+cfn=(96)
+calls=2 0 
+0 10 2
+0 8
+cfn=(96)
+calls=4 0 
+0 20 4
+0 66
+cfn=(4)
+calls=6 0 
+0 144
+0 90
+cfn=(36)
+calls=6 0 
+0 300
+0 114
+cfn=(92)
+calls=6 0 
+0 30 6
+0 34
+cfn=(90)
+calls=3 0 
+0 18 3
+0 102
+
+fn=(98)
+0 2
+0 0 1
+0 9
+
+fn=(158)
+0 7
+cfn=(160) munmap
+calls=1 0 
+0 5 1
+0 3
+
+fn=(160)
+0 2
+0 0 1
+0 3
+
+fn=(34)
+0 980
+
+fn=(74)
+0 3822
+cfn=(42)
+calls=546 0 
+0 3829
+0 6048
+cfn=(42)
+calls=564 0 
+0 12014
+0 3858
+
+fn=(110)
+0 640
+cfn=(111) _dl_cache_libcmp'2
+calls=40 0 
+0 3487
+
+fn=(111)
+0 3336
+cfn=(111)
+calls=167 0 
+0 12030
+0 151
+
+fn=(112)
+0 25
+cfn=(10)
+calls=5 0 
+0 352
+0 15
+cfn=(28)
+calls=5 0 
+0 140
+0 45
+cfn=(34)
+calls=5 0 
+0 153
+
+fn=(178) _dl_runtime_resolve
+0 495
+cfn=(180)
+calls=45 0 
+0 59231
+0 450
+
+ob=(6) /lib64/libm-2.12.so
+fl=(6) ???
+fn=(276) 0x0000000000003f10
+0 6
+
+fn=(270) 0x0000000000003e70
+0 6
+
+fn=(282) 0x0000000000043f80
+0 11
+
+fn=(1222) 0x0000000000003e90
+0 10
+cob=(3)
+cfi=(3)
+cfn=(1188) __cxa_finalize
+calls=1 0 
+0 80
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1421
+0 13
+
+ob=(10) /usr/lib64/valgrind/callgrind-amd64-linux
+fl=(10) /builddir/build/BUILD/valgrind-3.8.1/coregrind/m_trampoline.S
+fn=(834) vgPlain_amd64_linux_REDIR_FOR_vgettimeofday
+176 12
++1 12
+* 0 12
++1 12
+
+ob=(3)
+fl=(3)
+fn=(188) __secure_getenv
+0 5
+cfn=(190) getenv
+calls=1 0 
+0 218
+
+fn=(238) init_cacheinfo
+0 17
+cfn=(240) handle_intel
+calls=1 0 
+0 900
+0 4
+cfn=(240)
+calls=1 0 
+0 950
+0 125
+
+fn=(448) (below main)
+0 21
+cfn=(380) __cxa_atexit
+calls=1 0 
+0 62
+0 11
+cob=(9)
+cfi=(9)
+cfn=(450) __libc_csu_init
+calls=1 0 
+0 54
+0 8
+cfn=(472) _setjmp
+calls=1 0 
+0 29
+0 13
+cob=(9)
+cfi=(9)
+cfn=(478) main
+calls=1 0 
+0 6870398 34 16
+0 2
+cfn=(1158) exit
+calls=1 0 
+0 8792 1
+0 2
+
+fn=(506) _IO_default_uflow
+0 4
+cfn=(508) _IO_str_underflow
+calls=1 0 
+0 15
+0 4
+
+fn=(536) _IO_file_xsputn@@GLIBC_2.2.5
+0 270
+cfn=(538) _IO_file_overflow@@GLIBC_2.2.5
+calls=10 0 
+0 470
+0 300
+cfn=(544) _IO_file_write@@GLIBC_2.2.5
+calls=10 0 
+0 668 10
+0 250
+
+fn=(546) write
+0 20
+cfn=(548) __write_nocancel
+calls=2 0 
+0 10 2
+0 16
+cfn=(976) __libc_enable_asynccancel
+calls=8 0 
+0 88
+0 24
+0 0 8
+0 24
+cfn=(982) __libc_disable_asynccancel
+calls=8 0 
+0 96
+0 40
+
+fn=(582) sbrk
+0 30
+cfn=(584) brk
+calls=1 0 
+0 12 1
+0 16
+cfn=(584)
+calls=1 0 
+0 12 1
+0 4
+
+fn=(584)
+0 6
+0 0 2
+0 18
+
+fn=(1138) munmap
+0 4
+0 0 2 2
+0 6
+
+fn=(1284) _Exit
+0 5
+
+fn=(190)
+0 9
+cfn=(192) __GI_strlen
+calls=1 0 
+0 27
+0 182
+
+fn=(230) _dl_vdso_vsym
+0 16
+
+fn=(236) __libc_global_ctors
+0 8
+cfn=(238)
+calls=1 0 
+0 1996
+0 5
+
+fn=(472)
+0 8
+cfn=(474) __sigsetjmp
+calls=4 0 
+0 108
+
+fn=(476) __sigjmp_save
+0 36
+
+fn=(496) _IO_setb
+0 85
+
+fn=(510) __strtol_internal
+0 3
+cfn=(512) ____strtol_l_internal
+calls=1 0 
+0 198
+
+fn=(520) fprintf
+0 152
+cfn=(522) vfprintf
+calls=8 0 
+0 11866 8
+0 16
+
+fn=(528) _IO_default_xsputn
+0 1901
+cfn=(1102) mempcpy
+calls=1 0 
+0 31
+0 2354
+
+fn=(544)
+0 210
+cfn=(546)
+calls=10 0 
+0 318 10
+0 140
+
+fn=(578) malloc_consolidate
+0 670
+
+fn=(688) __GI_memset
+0 221
+
+fn=(874) mprotect
+0 2
+0 0 1
+0 3
+
+fn=(882) clone
+0 42
+0 0 3
+0 21
+cob=(4)
+cfi=(4)
+cfn=(896) start_thread
+calls=1 0 
+0 103410297 12 1021
+
+fn=(883) clone'2
+0 18
+cob=(4)
+cfi=(4)
+cfn=(897) start_thread'2
+calls=2 0 
+0 101807562 12 1018
+
+fn=(972) vsnprintf
+0 60
+cfn=(488) _IO_no_init
+calls=3 0 
+0 123
+0 27
+cfn=(492) _IO_str_init_static_internal
+calls=3 0 
+0 156
+0 12
+cfn=(522)
+calls=3 0 
+0 2874
+0 33
+
+fn=(1190) __unregister_atfork
+0 105
+
+fn=(232) __init_misc
+0 12
+cfn=(234) __GI_strrchr
+calls=1 0 
+0 34
+0 12
+
+fn=(246) intel_02_known_compare
+0 378
+
+fn=(486) vsscanf
+0 15
+cfn=(488)
+calls=1 0 
+0 41
+0 7
+cfn=(492)
+calls=1 0 
+0 75
+0 5
+cfn=(498) _IO_vfscanf
+calls=1 0 
+0 829
+0 6
+
+fn=(512)
+0 198
+
+fn=(524) buffered_vfprintf
+0 184
+cfn=(523) vfprintf'2
+calls=8 0 
+0 9008
+0 231
+cfn=(536)
+calls=8 0 
+0 1597 8
+0 152
+cob=(4)
+cfi=(4)
+cfn=(514) _pthread_cleanup_pop_restore
+calls=8 0 
+0 80
+0 136
+cob=(4)
+cfi=(4)
+cfn=(500) _pthread_cleanup_push_defer
+calls=8 0 
+0 96
+0 63
+
+fn=(540) _IO_doallocbuf
+0 15
+cfn=(496)
+calls=1 0 
+0 17
+
+fn=(566) getpagesize
+0 42
+
+fn=(686)
+0 14
+
+fn=(976)
+0 99
+
+fn=(1064) _int_free
+0 308
+
+fn=(1280) _IO_cleanup
+0 7
+cfn=(1282) _IO_flush_all_lockp
+calls=1 0 
+0 77
+0 46
+
+fn=(494) __GI___rawmemchr
+0 23
+
+fn=(502) _IO_sputbackc
+0 15
+
+fn=(526) strchrnul
+0 936
+
+fn=(542) _IO_do_write@@GLIBC_2.2.5
+0 170
+
+fn=(564) ptmalloc_init
+0 22
+cfn=(566)
+calls=1 0 
+0 6
+0 24
+cfn=(574) __linkin_atfork
+calls=1 0 
+0 9
+0 181
+cfn=(568) _dl_addr
+calls=1 0 
+0 59516
+0 9
+
+fn=(576) _int_malloc
+0 1107
+cfn=(578)
+calls=1 0 
+0 670
+0 187
+cfn=(580) __default_morecore
+calls=1 0 
+0 61 2
+0 46
+cfn=(580)
+calls=1 0 
+0 27
+0 35
+cfn=(626) mmap
+calls=2 0 
+0 12 2
+0 38
+
+fn=(1112) usleep
+0 14
+cfn=(1114) nanosleep
+calls=1 0 
+0 38 1 14
+0 2
+
+fn=(1114)
+0 4
+cfn=(976)
+calls=1 0 
+0 11
+0 3
+0 0 1 14
+0 3
+cfn=(982)
+calls=1 0 
+0 12
+0 5
+
+fn=(1278)
+0 6
+
+fn=(144)
+0 6
+
+fn=(228)
+0 23
+cfn=(230)
+calls=1 0 
+0 8
+0 9
+cfn=(230)
+calls=1 0 
+0 8
+0 7
+cfn=(232)
+calls=1 0 
+0 58
+0 1
+cfn=(236)
+calls=1 0 
+0 2009
+0 12
+
+fn=(382) __new_exitfn
+0 109
+
+fn=(492)
+0 43
+cfn=(494)
+calls=1 0 
+0 23
+0 6
+cfn=(496)
+calls=1 0 
+0 17
+0 15
+cfn=(496)
+calls=3 0 
+0 51
+0 76
+
+fn=(522)
+0 292
+cfn=(526)
+calls=3 0 
+0 69
+0 39
+cfn=(528)
+calls=3 0 
+0 54
+0 15
+cfn=(534) free
+calls=3 0 
+0 21
+0 6
+cfn=(534)
+calls=3 0 
+0 21
+0 155
+cfn=(524)
+calls=8 0 
+0 11547 8
+0 358
+cfn=(526)
+calls=6 0 
+0 138
+0 60
+cfn=(528)
+calls=6 0 
+0 300
+0 426
+cfn=(528)
+calls=6 0 
+0 390
+0 303
+cfn=(530) _itoa_word
+calls=6 0 
+0 312
+0 234
+
+fn=(523)
+0 264
+cfn=(526)
+calls=8 0 
+0 220
+0 104
+cfn=(528)
+calls=8 0 
+0 860
+0 40
+cfn=(534)
+calls=8 0 
+0 56
+0 16
+cfn=(534)
+calls=8 0 
+0 56
+0 1158
+cfn=(526)
+calls=19 0 
+0 509
+0 190
+cfn=(528)
+calls=19 0 
+0 1480
+0 1148
+cfn=(528)
+calls=15 0 
+0 840
+0 479
+cfn=(530)
+calls=15 0 
+0 510
+0 672
+cfn=(528)
+calls=4 0 
+0 362
+0 44
+
+fn=(548)
+0 4
+0 0 2
+0 6
+
+fn=(560) malloc
+0 141
+cfn=(576)
+calls=6 0 
+0 1008 2
+0 84
+cfn=(562) malloc_hook_ini
+calls=1 0 
+0 60835 2
+
+fn=(561) malloc'2
+0 22
+cfn=(576)
+calls=1 0 
+0 1025 2
+0 13
+
+fn=(562)
+0 5
+cfn=(564)
+calls=1 0 
+0 59767
+0 3
+cfn=(561)
+calls=1 0 
+0 1060 2
+
+fn=(574)
+0 9
+
+fn=(970) snprintf
+0 54
+cfn=(972)
+calls=3 0 
+0 3285
+0 6
+
+fn=(1282)
+0 77
+
+fn=(140)
+0 3
+cfn=(142) __init_cpu_features
+calls=1 0 
+0 57
+0 4
+
+fn=(198) getrlimit
+0 2
+0 0 1
+0 3
+
+fn=(212) __register_atfork
+0 60
+
+fn=(240)
+0 50
+cfn=(242) intel_check_word
+calls=2 0 
+0 1564
+0 14
+cfn=(242)
+calls=2 0 
+0 194
+0 28
+
+fn=(488)
+0 40
+cfn=(490) _IO_old_init
+calls=4 0 
+0 84
+0 40
+
+fn=(490)
+0 84
+
+fn=(842) fwrite
+0 111
+cfn=(536)
+calls=2 0 
+0 361 2
+0 21
+
+fn=(926) memcpy
+0 5400000
+
+fn=(1158)
+0 61
+cfn=(1280)
+calls=1 0 
+0 130
+0 5
+cfn=(1284)
+calls=1 0 
+0 5 1
+0 8
+cob=(1)
+cfi=(1)
+cfn=(1160)
+calls=1 0 
+0 8582
+0 1
+
+fn=(204) __libc_dl_error_tsd
+0 3
+
+fn=(484) sscanf
+0 19
+cfn=(486)
+calls=1 0 
+0 978
+0 2
+
+fn=(498)
+0 167
+cfn=(502)
+calls=1 0 
+0 15
+0 155
+cfn=(510)
+calls=1 0 
+0 201
+0 194
+cob=(4)
+cfi=(4)
+cfn=(500)
+calls=1 0 
+0 12
+0 8
+cob=(4)
+cfi=(4)
+cfn=(514)
+calls=1 0 
+0 10
+0 8
+cfn=(504) __uflow
+calls=1 0 
+0 49
+0 10
+
+fn=(508)
+0 15
+
+fn=(530)
+0 822
+
+fn=(568)
+0 14
+cob=(4)
+cfi=(4)
+cfn=(570)
+calls=1 0 
+0 23
+0 59440
+cob=(4)
+cfi=(4)
+cfn=(572)
+calls=1 0 
+0 26
+0 13
+
+fn=(580)
+0 4
+cfn=(582)
+calls=2 0 
+0 74 2
+0 10
+
+fn=(590)
+0 7
+
+fn=(762) memmove
+0 96
+
+fn=(954) madvise
+0 6
+0 0 3
+0 9
+
+fn=(1102)
+0 31
+
+fn=(192)
+0 27
+
+fn=(244) bsearch
+0 752
+cfn=(246)
+calls=54 0 
+0 378
+0 220
+
+fn=(380)
+0 27
+cfn=(382)
+calls=3 0 
+0 109
+0 48
+
+fn=(474)
+0 72
+cfn=(476)
+calls=4 0 
+0 36
+
+fn=(534)
+0 230
+cfn=(1064)
+calls=4 0 
+0 308
+0 54
+cfn=(1138)
+calls=2 0 
+0 10 2 2
+0 25
+
+fn=(538)
+0 260
+cfn=(542)
+calls=10 0 
+0 170
+0 2
+cfn=(540)
+calls=1 0 
+0 32
+0 6
+
+fn=(592) 0x0000000000134ba0
+0 58
+
+fn=(868)
+0 38
+cfn=(576)
+calls=1 0 
+0 150
+0 38
+cfn=(688)
+calls=1 0 
+0 63
+0 1
+
+fn=(982)
+0 108
+
+fn=(1012) __memcmp_sse4_1
+0 3400000
+
+fn=(1188)
+0 182
+cob=(7) /usr/lib64/libstdc++.so.6.0.13
+cfi=(7) ???
+cfn=(1212) 0x0000000000069ce0
+calls=1 0 
+0 4
+cob=(7)
+cfi=(7)
+cfn=(1210) 0x0000000000069cf0
+calls=1 0 
+0 4
+0 148
+cfn=(1190)
+calls=5 0 
+0 105
+
+fn=(142)
+0 57
+
+fn=(210) __libc_pthread_init
+0 8
+cfn=(212)
+calls=1 0 
+0 60
+0 385
+
+fn=(234)
+0 34
+
+fn=(242)
+0 180
+cfn=(244)
+calls=8 0 
+0 1350
+0 181
+
+ob=(9)
+fl=(9)
+fn=(632) hash_set_expand_percent
+0 28
+
+fn=(640) std::_Vector_base<HashTestData, std::allocator<HashTestData> >::_Vector_impl::_Vector_impl()
+0 7
+cfn=(642) std::allocator<HashTestData>::allocator()
+calls=1 0 
+0 14
+0 8
+
+fn=(644) __gnu_cxx::new_allocator<HashTestData>::new_allocator()
+0 5
+
+fn=(656) HashPerformanceTest<LinuxThread>::Init(int, int, void*)
+0 36
+cfn=(658) std::vector<HashTestData, std::allocator<HashTestData> >::clear()
+calls=1 0 
+0 69
+0 6
+cob=(7)
+cfi=(7)
+cfn=(674) operator new(unsigned long)
+calls=1 0 
+0 1554
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 787
+0 14
+cfn=(680) HashTestData::Init(void*, int, int)
+calls=1 0 
+0 1353
+0 6
+cfn=(690) std::vector<HashThread*, std::allocator<HashThread*> >::size() const
+calls=1 0 
+0 14
+0 8
+cfn=(692) std::vector<HashThread*, std::allocator<HashThread*> >::clear()
+calls=1 0 
+0 69
+0 12
+cfn=(680)
+calls=1 0 
+0 48
+0 6
+cfn=(704) std::vector<HashTestData, std::allocator<HashTestData> >::push_back(HashTestData const&)
+calls=1 0 
+0 2529
+0 2
+cob=(7)
+cfi=(7)
+cfn=(674)
+calls=1 0 
+0 207
+0 6
+cfn=(766) LinuxThread::LinuxThread()
+calls=1 0 
+0 18
+0 8
+cfn=(770) std::vector<HashThread*, std::allocator<HashThread*> >::push_back(HashThread* const&)
+calls=1 0 
+0 1161
+0 17
+
+fn=(694) std::vector<HashThread*, std::allocator<HashThread*> >::_M_erase_at_end(HashThread**)
+0 8
+cfn=(696) std::_Vector_base<HashThread*, std::allocator<HashThread*> >::_M_get_Tp_allocator()
+calls=1 0 
+0 6
+0 7
+cfn=(698) void std::_Destroy<HashThread**, HashThread*>(HashThread**, HashThread**, std::allocator<HashThread*>&)
+calls=1 0 
+0 31
+0 5
+
+fn=(704)
+0 14
+cfn=(706) std::vector<HashTestData, std::allocator<HashTestData> >::end()
+calls=1 0 
+0 23
+0 6
+cfn=(710) std::vector<HashTestData, std::allocator<HashTestData> >::_M_insert_aux(__gnu_cxx::__normal_iterator<HashTestData*, std::vector<HashTestData, std::allocator<HashTestData> > >, HashTestData const&)
+calls=1 0 
+0 2484
+0 2
+
+fn=(720) std::vector<HashTestData, std::allocator<HashTestData> >::size() const
+0 68
+
+fn=(726) __gnu_cxx::__normal_iterator<HashTestData*, std::vector<HashTestData, std::allocator<HashTestData> > >::difference_type __gnu_cxx::operator-<HashTestData*, std::vector<HashTestData, std::allocator<HashTestData> > >(__gnu_cxx::__normal_iterator<HashTestData*, std::vector<HashTestData, std::allocator<HashTestData> > > const&, __gnu_cxx::__normal_iterator<HashTestData*, std::vector<HashTestData, std::allocator<HashTestData> > > const&)
+0 9
+cfn=(728) __gnu_cxx::__normal_iterator<HashTestData*, std::vector<HashTestData, std::allocator<HashTestData> > >::base() const
+calls=1 0 
+0 6
+0 5
+cfn=(728)
+calls=1 0 
+0 6
+0 12
+
+fn=(780) std::vector<HashThread*, std::allocator<HashThread*> >::max_size() const
+0 14
+cfn=(782) std::_Vector_base<HashThread*, std::allocator<HashThread*> >::_M_get_Tp_allocator() const
+calls=2 0 
+0 12
+0 4
+cfn=(784) __gnu_cxx::new_allocator<HashThread*>::max_size() const
+calls=2 0 
+0 12
+0 4
+
+fn=(792) std::_Vector_base<HashThread*, std::allocator<HashThread*> >::_M_allocate(unsigned long)
+0 13
+cfn=(794) __gnu_cxx::new_allocator<HashThread*>::allocate(unsigned long, void const*)
+calls=1 0 
+0 235
+0 3
+
+fn=(826) HaStopWatch::GeTime(TimeInfo&)
+0 108
+cob=(3)
+cfi=(3)
+cfn=(832) gettimeofday
+calls=12 0 
+0 144 12
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1400
+0 96
+
+fn=(1016) hash_erase
+0 2700000
+cfn=(1018) hash_lock_lock
+calls=100000 0 
+0 2801354
+0 1200000
+cfn=(1024) hash_node_container_erase
+calls=100000 0 
+0 30700000
+0 400000
+cfn=(1042) hash_lock_unlock
+calls=100000 0 
+0 2401428
+0 500000
+
+fn=(1036) hash_data_destory
+0 800000
+cfn=(1038) data_container_destroy
+calls=100000 0 
+0 1600000
+0 400000
+cfn=(1038)
+calls=100000 0 
+0 1600000
+0 200000
+
+fn=(1042)
+0 700000
+cob=(4)
+cfi=(4)
+cfn=(572)
+calls=100000 0 
+0 1500000
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1428
+0 200000
+
+fn=(1068) std::_Vector_base<HashThread*, std::allocator<HashThread*> >::~_Vector_base()
+0 22
+cfn=(818) std::_Vector_base<HashThread*, std::allocator<HashThread*> >::_M_deallocate(HashThread**, unsigned long)
+calls=1 0 
+0 114
+0 4
+cfn=(1072) std::_Vector_base<HashThread*, std::allocator<HashThread*> >::_Vector_impl::~_Vector_impl()
+calls=1 0 
+0 23
+0 5
+
+fn=(1094) hash_max_hash_node_size
+0 19
+
+fn=(1100) hash_name
+0 18
+
+fn=(1132) vfree
+0 14
+cob=(3)
+cfi=(3)
+cfn=(534)
+calls=2 0 
+0 84 2 2
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1253
+0 4
+
+fn=(630) hashnodearray_init
+0 1462500
+
+fn=(638) std::_Vector_base<HashTestData, std::allocator<HashTestData> >::_Vector_base()
+0 7
+cfn=(640)
+calls=1 0 
+0 29
+0 2
+
+fn=(650) std::_Vector_base<HashThread*, std::allocator<HashThread*> >::_Vector_impl::_Vector_impl()
+0 7
+cfn=(652) std::allocator<HashThread*>::allocator()
+calls=1 0 
+0 14
+0 8
+
+fn=(654) __gnu_cxx::new_allocator<HashThread*>::new_allocator()
+0 5
+
+fn=(698)
+0 33
+cfn=(700) void std::_Destroy<HashThread**>(HashThread**, HashThread**)
+calls=3 0 
+0 54
+0 6
+
+fn=(700)
+0 30
+cfn=(702) void std::_Destroy_aux<true>::__destroy<HashThread**>(HashThread**, HashThread**)
+calls=3 0 
+0 18
+0 6
+
+fn=(702)
+0 18
+
+fn=(710)
+0 19
+cfn=(712) std::vector<HashTestData, std::allocator<HashTestData> >::_M_check_len(unsigned long, char const*) const
+calls=1 0 
+0 180
+0 4
+cfn=(724) std::vector<HashTestData, std::allocator<HashTestData> >::begin()
+calls=1 0 
+0 22
+0 6
+cfn=(726)
+calls=1 0 
+0 38
+0 6
+cfn=(730) std::_Vector_base<HashTestData, std::allocator<HashTestData> >::_M_allocate(unsigned long)
+calls=1 0 
+0 254
+0 15
+cfn=(734) __gnu_cxx::new_allocator<HashTestData>::construct(HashTestData*, HashTestData const&)
+calls=1 0 
+0 33
+0 4
+cfn=(662) std::_Vector_base<HashTestData, std::allocator<HashTestData> >::_M_get_Tp_allocator()
+calls=1 0 
+0 6
+0 4
+cfn=(728)
+calls=1 0 
+0 6
+0 8
+cfn=(738) HashTestData* std::__uninitialized_move_a<HashTestData*, HashTestData*, std::allocator<HashTestData> >(HashTestData*, HashTestData*, HashTestData*, std::allocator<HashTestData>&)
+calls=1 0 
+0 1527
+0 5
+cfn=(662)
+calls=1 0 
+0 6
+0 6
+cfn=(728)
+calls=1 0 
+0 6
+0 6
+cfn=(738)
+calls=1 0 
+0 224
+0 4
+cfn=(662)
+calls=1 0 
+0 6
+0 8
+cfn=(664) void std::_Destroy<HashTestData*, HashTestData>(HashTestData*, HashTestData*, std::allocator<HashTestData>&)
+calls=1 0 
+0 31
+0 19
+cfn=(764) std::_Vector_base<HashTestData, std::allocator<HashTestData> >::_M_deallocate(HashTestData*, unsigned long)
+calls=1 0 
+0 10
+0 21
+
+fn=(712)
+0 10
+cfn=(714) std::vector<HashTestData, std::allocator<HashTestData> >::max_size() const
+calls=1 0 
+0 23
+0 4
+cfn=(720)
+calls=1 0 
+0 17
+0 10
+cfn=(720)
+calls=1 0 
+0 17
+0 4
+cfn=(720)
+calls=1 0 
+0 17
+0 6
+cfn=(722) unsigned long const& std::max<unsigned long>(unsigned long const&, unsigned long const&)
+calls=1 0 
+0 14
+0 6
+cfn=(720)
+calls=1 0 
+0 17
+0 5
+cfn=(714)
+calls=1 0 
+0 23
+0 7
+
+fn=(752) std::__niter_base<HashTestData*, false>::__b(HashTestData*)
+0 36
+
+fn=(772) std::vector<HashThread*, std::allocator<HashThread*> >::end()
+0 10
+cfn=(774) __gnu_cxx::__normal_iterator<HashThread**, std::vector<HashThread*, std::allocator<HashThread*> > >::__normal_iterator(HashThread** const&)
+calls=1 0 
+0 10
+0 3
+
+fn=(802) HashThread** std::uninitialized_copy<HashThread**, HashThread**>(HashThread**, HashThread**, HashThread**)
+0 24
+cfn=(804) HashThread** std::__uninitialized_copy<true>::uninitialized_copy<HashThread**, HashThread**>(HashThread**, HashThread**, HashThread**)
+calls=2 0 
+0 322
+0 4
+
+fn=(884) LinuxThread::Join()
+0 27
+cob=(4)
+cfi=(4)
+cfn=(890) pthread_join
+calls=3 0 
+0 405
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1258
+0 6
+
+fn=(904) hash_insert
+0 5300000
+cfn=(906) hash_node_container_add
+calls=100000 0 
+0 35801324
+0 900000
+
+fn=(906)
+0 1500000
+cfn=(908) hash_node_container_get_node_arry
+calls=100000 0 
+0 1800000
+0 1400000
+cfn=(910) hashnodearray_add
+calls=100000 0 
+0 29801319
+0 1300005
+
+fn=(920) data_container_set
+0 4400000
+cob=(3)
+cfi=(3)
+cfn=(926)
+calls=200000 0 
+0 3600000
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1319
+0 600000
+
+fn=(1034) hashnodearray_erase_by_index
+0 2700000
+
+fn=(1082) __gnu_cxx::new_allocator<HashTestData>::deallocate(HashTestData*, unsigned long)
+0 9
+cob=(7)
+cfi=(7)
+cfn=(1058) operator delete(void*)
+calls=1 0 
+0 87
+0 2
+
+fn=(1086) std::allocator<HashTestData>::~allocator()
+0 7
+cfn=(1088) __gnu_cxx::new_allocator<HashTestData>::~new_allocator()
+calls=1 0 
+0 5
+0 2
+
+fn=(1126) hash_node_container_free
+0 337510
+cfn=(1128) hashnodearray_destroy
+calls=112500 0 
+0 1350000
+0 1012510
+cfn=(1130) hash_vfree
+calls=1 0 
+0 1316 1 1
+0 2
+
+fn=(1156) PrintHashStat()
+0 15
+cob=(3)
+cfi=(3)
+cfn=(520)
+calls=1 0 
+0 2087 1
+0 11
+cob=(3)
+cfi=(3)
+cfn=(520)
+calls=1 0 
+0 2132 1
+0 4
+
+fn=(636) std::vector<HashTestData, std::allocator<HashTestData> >::vector()
+0 7
+cfn=(638)
+calls=1 0 
+0 38
+0 2
+
+fn=(648) std::_Vector_base<HashThread*, std::allocator<HashThread*> >::_Vector_base()
+0 7
+cfn=(650)
+calls=1 0 
+0 29
+0 2
+
+fn=(690)
+0 70
+
+fn=(708) __gnu_cxx::__normal_iterator<HashTestData*, std::vector<HashTestData, std::allocator<HashTestData> > >::__normal_iterator(HashTestData* const&)
+0 20
+
+fn=(736) operator new(unsigned long, void*)
+0 14
+
+fn=(754) HashTestData* std::__copy_move_a<false, HashTestData*, HashTestData*>(HashTestData*, HashTestData*, HashTestData*)
+0 26
+cfn=(756) HashTestData* std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<HashTestData>(HashTestData const*, HashTestData const*, HashTestData*)
+calls=2 0 
+0 1437
+0 4
+
+fn=(778) std::vector<HashThread*, std::allocator<HashThread*> >::_M_check_len(unsigned long, char const*) const
+0 10
+cfn=(780)
+calls=1 0 
+0 23
+0 4
+cfn=(690)
+calls=1 0 
+0 14
+0 10
+cfn=(690)
+calls=1 0 
+0 14
+0 4
+cfn=(690)
+calls=1 0 
+0 14
+0 6
+cfn=(722)
+calls=1 0 
+0 14
+0 6
+cfn=(690)
+calls=1 0 
+0 14
+0 5
+cfn=(780)
+calls=1 0 
+0 23
+0 7
+
+fn=(788) __gnu_cxx::__normal_iterator<HashThread**, std::vector<HashThread*, std::allocator<HashThread*> > >::difference_type __gnu_cxx::operator-<HashThread**, std::vector<HashThread*, std::allocator<HashThread*> > >(__gnu_cxx::__normal_iterator<HashThread**, std::vector<HashThread*, std::allocator<HashThread*> > > const&, __gnu_cxx::__normal_iterator<HashThread**, std::vector<HashThread*, std::allocator<HashThread*> > > const&)
+0 9
+cfn=(790) __gnu_cxx::__normal_iterator<HashThread**, std::vector<HashThread*, std::allocator<HashThread*> > >::base() const
+calls=1 0 
+0 6
+0 5
+cfn=(790)
+calls=1 0 
+0 6
+0 9
+
+fn=(808) std::__miter_base<HashThread**, false>::__b(HashThread**)
+0 24
+
+fn=(812) std::__niter_base<HashThread**, false>::__b(HashThread**)
+0 36
+
+fn=(908)
+0 3600000
+
+fn=(910)
+0 1700000
+cfn=(912) hash_data_node_pool_pop
+calls=100000 0 
+0 5100000
+0 1100000
+cfn=(914) hash_data_init
+calls=100000 0 
+0 4000000
+0 700000
+cfn=(918) hash_data_set_key
+calls=100000 0 
+0 5901319
+0 900000
+cfn=(928) hash_data_set_value
+calls=100000 0 
+0 5900000
+0 1000000
+cfn=(930) hashnodearray_push_back
+calls=100000 0 
+0 2800000
+0 700000
+
+fn=(1002) thread_func_find(void*)
+0 1700011
+cfn=(1004) hash_find
+calls=100000 0 
+0 12501311
+0 1400012
+
+fn=(1026) hashnodearray_erase
+0 1300000
+cfn=(1028) hashnodearray_find_index
+calls=100000 0 
+0 9500000
+0 1700000
+cfn=(1034)
+calls=100000 0 
+0 2700000
+0 400000
+cfn=(1036)
+calls=100000 0 
+0 4600000
+0 500000
+cfn=(1040) hash_data_node_pool_push
+calls=100000 0 
+0 5400000
+0 200000
+
+fn=(1074) std::allocator<HashThread*>::~allocator()
+0 7
+cfn=(1076) __gnu_cxx::new_allocator<HashThread*>::~new_allocator()
+calls=1 0 
+0 5
+0 2
+
+fn=(440)
+0 11
+cob=(3)
+cfi=(3)
+cfn=(448)
+calls=1 0 
+0 6879392 35 16
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1455
+
+fn=(620) hash_data_node_pool_malloc
+0 15
+cfn=(622) hash_vmalloc
+calls=1 0 
+0 249 1
+0 1462527
+
+fn=(642)
+0 7
+cfn=(644)
+calls=1 0 
+0 5
+0 2
+
+fn=(646) std::vector<HashThread*, std::allocator<HashThread*> >::vector()
+0 7
+cfn=(648)
+calls=1 0 
+0 38
+0 2
+
+fn=(662)
+0 30
+
+fn=(716) std::_Vector_base<HashTestData, std::allocator<HashTestData> >::_M_get_Tp_allocator() const
+0 12
+
+fn=(718) __gnu_cxx::new_allocator<HashTestData>::max_size() const
+0 18
+
+fn=(722)
+0 28
+
+fn=(732) __gnu_cxx::new_allocator<HashTestData>::allocate(unsigned long, void const*)
+0 9
+cfn=(718)
+calls=1 0 
+0 6
+0 14
+cob=(7)
+cfi=(7)
+cfn=(674)
+calls=1 0 
+0 207
+0 2
+
+fn=(746) HashTestData* std::copy<HashTestData*, HashTestData*>(HashTestData*, HashTestData*, HashTestData*)
+0 20
+cfn=(748) std::__miter_base<HashTestData*, false>::__b(HashTestData*)
+calls=2 0 
+0 12
+0 8
+cfn=(748)
+calls=2 0 
+0 12
+0 8
+cfn=(750) HashTestData* std::__copy_move_a2<false, HashTestData*, HashTestData*>(HashTestData*, HashTestData*, HashTestData*)
+calls=2 0 
+0 1559
+0 8
+
+fn=(750)
+0 22
+cfn=(752)
+calls=2 0 
+0 12
+0 8
+cfn=(752)
+calls=2 0 
+0 12
+0 8
+cfn=(752)
+calls=2 0 
+0 12
+0 8
+cfn=(754)
+calls=2 0 
+0 1467
+0 10
+
+fn=(756)
+0 52
+cob=(3)
+cfi=(3)
+cfn=(762)
+calls=2 0 
+0 48
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1303
+0 34
+
+fn=(768) HashThread::HashThread()
+0 7
+
+fn=(806) HashThread** std::copy<HashThread**, HashThread**>(HashThread**, HashThread**, HashThread**)
+0 20
+cfn=(808)
+calls=2 0 
+0 12
+0 8
+cfn=(808)
+calls=2 0 
+0 12
+0 8
+cfn=(810) HashThread** std::__copy_move_a2<false, HashThread**, HashThread**>(HashThread**, HashThread**, HashThread**)
+calls=2 0 
+0 226
+0 8
+
+fn=(814) HashThread** std::__copy_move_a<false, HashThread**, HashThread**>(HashThread**, HashThread**, HashThread**)
+0 26
+cfn=(816) HashThread** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<HashThread*>(HashThread* const*, HashThread* const*, HashThread**)
+calls=2 0 
+0 104
+0 4
+
+fn=(918)
+0 1400000
+cfn=(920)
+calls=100000 0 
+0 4301319
+0 200000
+
+fn=(992) std::vector<HashTestData, std::allocator<HashTestData> >::operator[](unsigned long)
+0 28
+
+fn=(1078) std::vector<HashTestData, std::allocator<HashTestData> >::~vector()
+0 9
+cfn=(662)
+calls=1 0 
+0 6
+0 8
+cfn=(664)
+calls=1 0 
+0 31
+0 4
+cfn=(1080) std::_Vector_base<HashTestData, std::allocator<HashTestData> >::~_Vector_base()
+calls=1 0 
+0 171
+0 5
+
+fn=(1090) PrintHashInfo(void*)
+0 10
+cfn=(1092) hash_ability
+calls=1 0 
+0 19
+0 4
+cfn=(1094)
+calls=1 0 
+0 19
+0 4
+cfn=(1096) hash_size
+calls=1 0 
+0 28
+0 4
+cfn=(1100)
+calls=1 0 
+0 18
+0 9
+cob=(3)
+cfi=(3)
+cfn=(520)
+calls=1 0 
+0 2142 1
+0 6
+
+fn=(1092)
+0 19
+
+fn=(460) 0x0000000000400f40
+0 6
+
+fn=(550) hash_malloc
+0 8
+cfn=(552) hash_kmalloc
+calls=1 0 
+0 62223 2
+0 12
+cob=(3)
+cfi=(3)
+cfn=(592)
+calls=1 0 
+0 58
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1331
+0 10
+cfn=(612) hash_lock_init
+calls=1 0 
+0 1390
+0 5
+cfn=(620)
+calls=1 0 
+0 1462791 1
+0 9
+cfn=(628) hash_node_container_malloc
+calls=1 0 
+0 2587786 1
+0 11
+cfn=(632)
+calls=1 0 
+0 28
+0 3
+
+fn=(552)
+0 8
+cfn=(554) kmalloc
+calls=1 0 
+0 62208 2
+0 7
+
+fn=(652)
+0 7
+cfn=(654)
+calls=1 0 
+0 5
+0 2
+
+fn=(660) std::vector<HashTestData, std::allocator<HashTestData> >::_M_erase_at_end(HashTestData*)
+0 8
+cfn=(662)
+calls=1 0 
+0 6
+0 7
+cfn=(664)
+calls=1 0 
+0 31
+0 5
+
+fn=(730)
+0 13
+cfn=(732)
+calls=1 0 
+0 238
+0 3
+
+fn=(744) HashTestData* std::__uninitialized_copy<true>::uninitialized_copy<HashTestData*, HashTestData*>(HashTestData*, HashTestData*, HashTestData*)
+0 24
+cfn=(746)
+calls=2 0 
+0 1627
+0 4
+
+fn=(764)
+0 22
+cfn=(1082)
+calls=1 0 
+0 98
+0 4
+
+fn=(782)
+0 12
+
+fn=(784)
+0 18
+
+fn=(786) std::vector<HashThread*, std::allocator<HashThread*> >::begin()
+0 9
+cfn=(774)
+calls=1 0 
+0 10
+0 3
+
+fn=(790)
+0 24
+
+fn=(800) HashThread** std::__uninitialized_copy_a<HashThread**, HashThread**, HashThread*>(HashThread**, HashThread**, HashThread**, std::allocator<HashThread*>&)
+0 26
+cfn=(802)
+calls=2 0 
+0 350
+0 4
+
+fn=(804)
+0 24
+cfn=(806)
+calls=2 0 
+0 294
+0 4
+
+fn=(820) HashPerformanceTest<LinuxThread>::DoTest()
+0 13
+cfn=(822) HaStopWatch::HaStopWatch()
+calls=1 0 
+0 1473 1
+0 3
+cfn=(836) HaStopWatch::Start()
+calls=1 0 
+0 84 2
+0 8
+cob=(3)
+cfi=(3)
+cfn=(842)
+calls=1 0 
+0 230 1
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1278
+0 5
+cfn=(844) std::vector<HashThread*, std::allocator<HashThread*> >::operator[](unsigned long)
+calls=1 0 
+0 11
+0 11
+cfn=(846) LinuxThread::Start(void* (*)(void*), HashTestData&)
+calls=1 0 
+0 8912 3
+0 5
+cfn=(844)
+calls=1 0 
+0 11
+0 6
+cfn=(884)
+calls=1 0 
+0 1404
+0 3
+cfn=(962) HaStopWatch::GetPastMicrosec()
+calls=1 0 
+0 2572 1
+0 6
+cob=(3)
+cfi=(3)
+cfn=(520)
+calls=1 0 
+0 942 1
+0 3
+cfn=(988) HaStopWatch::ReStart()
+calls=1 0 
+0 142 3
+0 9
+cfn=(844)
+calls=1 0 
+0 11
+0 11
+cfn=(992)
+calls=1 0 
+0 14
+0 6
+cfn=(846)
+calls=1 0 
+0 3513 1
+0 22
+cfn=(844)
+calls=1 0 
+0 11
+0 6
+cfn=(884)
+calls=1 0 
+0 146
+0 16
+cfn=(962)
+calls=1 0 
+0 1254 1
+0 6
+cob=(3)
+cfi=(3)
+cfn=(520)
+calls=1 0 
+0 942 1
+0 3
+cfn=(988)
+calls=1 0 
+0 142 3
+0 5
+cfn=(844)
+calls=1 0 
+0 11
+0 11
+cfn=(846)
+calls=1 0 
+0 534 1
+0 5
+cfn=(844)
+calls=1 0 
+0 11
+0 6
+cfn=(884)
+calls=1 0 
+0 146
+0 3
+cfn=(962)
+calls=1 0 
+0 1254 1
+0 6
+cob=(3)
+cfi=(3)
+cfn=(520)
+calls=1 0 
+0 942 1
+0 9
+cfn=(992)
+calls=1 0 
+0 14
+0 37
+cob=(3)
+cfi=(3)
+cfn=(520)
+calls=1 0 
+0 1819 1
+0 6
+cob=(3)
+cfi=(3)
+cfn=(842)
+calls=1 0 
+0 263 1
+0 5
+
+fn=(844)
+0 77
+
+fn=(916) data_container_init
+0 2200000
+
+fn=(964) HaStopWatch::GetPastTime()
+0 21
+cfn=(824) TimeInfo::TimeInfo()
+calls=3 0 
+0 27
+0 27
+cfn=(824)
+calls=3 0 
+0 27
+0 24
+cfn=(826)
+calls=3 0 
+0 87 3
+0 107
+
+fn=(1018)
+0 700000
+cob=(4)
+cfi=(4)
+cfn=(570)
+calls=100000 0 
+0 1900000
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1354
+0 200000
+
+fn=(1038)
+0 3200000
+
+fn=(1040)
+0 5400000
+
+fn=(1080)
+0 25
+cfn=(764)
+calls=1 0 
+0 114
+0 4
+cfn=(1084) std::_Vector_base<HashTestData, std::allocator<HashTestData> >::_Vector_impl::~_Vector_impl()
+calls=1 0 
+0 23
+0 5
+
+fn=(1104) hash_free
+0 21
+cfn=(1106) hash_sleep
+calls=1 0 
+0 1349 1 14
+0 8
+cfn=(1126)
+calls=1 0 
+0 2701338 1 1
+0 8
+cfn=(1140) hash_data_node_pool_get
+calls=1 0 
+0 14
+0 9
+cfn=(1142) hash_data_node_pool_free
+calls=1 0 
+0 72 1 1
+0 4
+cfn=(1144) hash_lock_destroy
+calls=1 0 
+0 1420
+0 3
+cfn=(1152) hash_kfree
+calls=1 0 
+0 137
+0 2
+
+fn=(1152)
+0 10
+cfn=(1154) kfree
+calls=1 0 
+0 125
+0 2
+
+fn=(454) 0x0000000000400eac
+0 6
+
+fn=(466) 0x00000000004056d0
+0 11
+
+fn=(664)
+0 33
+cfn=(666) void std::_Destroy<HashTestData*>(HashTestData*, HashTestData*)
+calls=3 0 
+0 54
+0 6
+
+fn=(666)
+0 30
+cfn=(668) void std::_Destroy_aux<true>::__destroy<HashTestData*>(HashTestData*, HashTestData*)
+calls=3 0 
+0 18
+0 6
+
+fn=(668)
+0 18
+
+fn=(706)
+0 10
+cfn=(708)
+calls=1 0 
+0 10
+0 3
+
+fn=(738)
+0 30
+cfn=(740) HashTestData* std::__uninitialized_copy_a<HashTestData*, HashTestData*, HashTestData>(HashTestData*, HashTestData*, HashTestData*, std::allocator<HashTestData>&)
+calls=2 0 
+0 1713
+0 8
+
+fn=(740)
+0 26
+cfn=(742) HashTestData* std::uninitialized_copy<HashTestData*, HashTestData*>(HashTestData*, HashTestData*, HashTestData*)
+calls=2 0 
+0 1683
+0 4
+
+fn=(770)
+0 14
+cfn=(772)
+calls=1 0 
+0 23
+0 6
+cfn=(776) std::vector<HashThread*, std::allocator<HashThread*> >::_M_insert_aux(__gnu_cxx::__normal_iterator<HashThread**, std::vector<HashThread*, std::allocator<HashThread*> > >, HashThread* const&)
+calls=1 0 
+0 1116
+0 2
+
+fn=(818)
+0 22
+cfn=(1070) __gnu_cxx::new_allocator<HashThread*>::deallocate(HashThread**, unsigned long)
+calls=1 0 
+0 98
+0 4
+
+fn=(824)
+0 72
+
+fn=(912)
+0 5100000
+
+fn=(928)
+0 1400000
+cfn=(920)
+calls=100000 0 
+0 4300000
+0 200000
+
+fn=(1004)
+0 5900000
+cob=(3)
+cfi=(3)
+cfn=(1012)
+calls=100000 0 
+0 1700000
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1311
+0 2600000
+cob=(3)
+cfi=(3)
+cfn=(926)
+calls=100000 0 
+0 1800000
+0 500000
+
+fn=(1050) LinuxThread::~LinuxThread()
+0 7
+cfn=(1051) LinuxThread::~LinuxThread()'2
+calls=1 0 
+0 25
+0 3
+cob=(7)
+cfi=(7)
+cfn=(1058)
+calls=1 0 
+0 1340
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 801
+0 2
+
+fn=(1051)
+0 9
+cfn=(1052) HashThread::~HashThread()
+calls=1 0 
+0 11
+0 5
+
+fn=(1052)
+0 11
+
+fn=(1096)
+0 18
+cfn=(1098) hash_get_size
+calls=1 0 
+0 8
+0 2
+
+fn=(1128)
+0 1350000
+
+fn=(1144)
+0 7
+cob=(4)
+cfi=(4)
+cfn=(1150) pthread_mutex_destroy
+calls=1 0 
+0 9
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1402
+0 2
+
+fn=(1154)
+0 7
+cob=(3)
+cfi=(3)
+cfn=(534)
+calls=1 0 
+0 116
+0 2
+
+fn=(478)
+0 24
+cob=(3)
+cfi=(3)
+cfn=(484)
+calls=1 0 
+0 999
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1347
+0 6
+cob=(3)
+cfi=(3)
+cfn=(520)
+calls=1 0 
+0 1028 1
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1295
+0 14
+cfn=(550)
+calls=1 0 
+0 4115665 4
+0 6
+cfn=(634) HashPerformanceTest<LinuxThread>::HashPerformanceTest()
+calls=1 0 
+0 129
+0 7
+cfn=(656)
+calls=1 0 
+0 7930
+0 3
+cfn=(820)
+calls=1 0 
+0 28321 23
+0 4
+cfn=(1048) HashPerformanceTest<LinuxThread>::~HashPerformanceTest()
+calls=1 0 
+0 2710
+0 3
+cfn=(1090)
+calls=1 0 
+0 2263 1
+0 3
+cfn=(1104)
+calls=1 0 
+0 2704385 3 16
+0 1
+cfn=(1156)
+calls=1 0 
+0 4249 2
+0 6
+
+fn=(628)
+0 10
+cfn=(622)
+calls=1 0 
+0 249 1
+0 337519
+cfn=(630)
+calls=112500 0 
+0 1462500
+0 787508
+
+fn=(658)
+0 10
+cfn=(660)
+calls=1 0 
+0 57
+0 2
+
+fn=(680)
+0 56
+cob=(3)
+cfi=(3)
+cfn=(688)
+calls=2 0 
+0 36
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1305
+0 4
+
+fn=(692)
+0 10
+cfn=(694)
+calls=1 0 
+0 57
+0 2
+
+fn=(728)
+0 24
+
+fn=(742)
+0 24
+cfn=(744)
+calls=2 0 
+0 1655
+0 4
+
+fn=(748)
+0 24
+
+fn=(776)
+0 19
+cfn=(778)
+calls=1 0 
+0 168
+0 4
+cfn=(786)
+calls=1 0 
+0 22
+0 6
+cfn=(788)
+calls=1 0 
+0 35
+0 6
+cfn=(792)
+calls=1 0 
+0 251
+0 12
+cfn=(796) __gnu_cxx::new_allocator<HashThread*>::construct(HashThread**, HashThread* const&)
+calls=1 0 
+0 25
+0 4
+cfn=(696)
+calls=1 0 
+0 6
+0 4
+cfn=(790)
+calls=1 0 
+0 6
+0 8
+cfn=(798) HashThread** std::__uninitialized_move_a<HashThread**, HashThread**, std::allocator<HashThread*> >(HashThread**, HashThread**, HashThread**, std::allocator<HashThread*>&)
+calls=1 0 
+0 209
+0 5
+cfn=(696)
+calls=1 0 
+0 6
+0 6
+cfn=(790)
+calls=1 0 
+0 6
+0 6
+cfn=(798)
+calls=1 0 
+0 209
+0 4
+cfn=(696)
+calls=1 0 
+0 6
+0 8
+cfn=(698)
+calls=1 0 
+0 31
+0 16
+cfn=(818)
+calls=1 0 
+0 10
+0 18
+
+fn=(816)
+0 36
+cob=(3)
+cfi=(3)
+cfn=(762)
+calls=2 0 
+0 48
+0 20
+
+fn=(822)
+0 10
+cfn=(824)
+calls=1 0 
+0 9
+0 4
+cfn=(824)
+calls=1 0 
+0 9
+0 10
+cfn=(826)
+calls=1 0 
+0 1429 1
+0 2
+
+fn=(914)
+0 1200000
+cfn=(916)
+calls=100000 0 
+0 1100000
+0 400000
+cfn=(916)
+calls=100000 0 
+0 1100000
+0 200000
+
+fn=(990) HaStopWatch::Stop()
+0 30
+cfn=(826)
+calls=2 0 
+0 58 2
+0 4
+
+fn=(1014) thread_func_erase(void*)
+0 1400011
+cfn=(1016)
+calls=100000 0 
+0 40702782
+0 1000012
+
+fn=(1048)
+0 17
+cfn=(844)
+calls=1 0 
+0 11
+0 8
+cfn=(1050)
+calls=1 0 
+0 2178
+0 18
+cfn=(1066) std::vector<HashThread*, std::allocator<HashThread*> >::~vector()
+calls=1 0 
+0 231
+0 5
+cfn=(1078)
+calls=1 0 
+0 234
+0 8
+
+fn=(1066)
+0 9
+cfn=(696)
+calls=1 0 
+0 6
+0 8
+cfn=(698)
+calls=1 0 
+0 31
+0 4
+cfn=(1068)
+calls=1 0 
+0 168
+0 5
+
+fn=(1070)
+0 9
+cob=(7)
+cfi=(7)
+cfn=(1058)
+calls=1 0 
+0 87
+0 2
+
+fn=(1106)
+0 8
+cob=(3)
+cfi=(3)
+cfn=(1112)
+calls=1 0 
+0 54 1 14
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1285
+0 2
+
+fn=(450)
+0 15
+cob=(2)
+cfi=(2)
+cfn=(452) 0x0000000000400c78
+calls=1 0 
+0 29
+0 10
+
+fn=(612)
+0 8
+cob=(4)
+cfi=(4)
+cfn=(618) pthread_mutex_init
+calls=1 0 
+0 32
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1348
+0 2
+
+fn=(634)
+0 12
+cfn=(636)
+calls=1 0 
+0 47
+0 4
+cfn=(646)
+calls=1 0 
+0 47
+0 19
+
+fn=(724)
+0 9
+cfn=(708)
+calls=1 0 
+0 10
+0 3
+
+fn=(766)
+0 7
+cfn=(768)
+calls=1 0 
+0 7
+0 4
+
+fn=(774)
+0 20
+
+fn=(836)
+0 45
+cfn=(826)
+calls=3 0 
+0 87 3
+0 27
+cfn=(826)
+calls=3 0 
+0 87 3
+0 6
+
+fn=(902) thread_func_insert(void*)
+0 1700011
+cfn=(904)
+calls=100000 0 
+0 42001324
+0 1000012
+
+fn=(988)
+0 14
+cfn=(990)
+calls=2 0 
+0 92 2
+0 6
+cfn=(836)
+calls=2 0 
+0 168 4
+0 4
+
+fn=(1028)
+0 2400000
+cfn=(1030) hash_data_compare_key
+calls=100000 0 
+0 5900000
+0 1200000
+
+fn=(1032) data_container_get
+0 700000
+
+fn=(1084)
+0 7
+cfn=(1086)
+calls=1 0 
+0 14
+0 2
+
+fn=(1088)
+0 5
+
+fn=(1142)
+0 7
+cfn=(1130)
+calls=1 0 
+0 63 1 1
+0 2
+
+fn=(554)
+0 9
+cob=(3)
+cfi=(3)
+cfn=(560)
+calls=1 0 
+0 60850 2
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1347
+0 2
+
+fn=(622)
+0 14
+cfn=(624) vmalloc
+calls=2 0 
+0 470 2
+0 14
+
+fn=(624)
+0 16
+cob=(3)
+cfi=(3)
+cfn=(560)
+calls=2 0 
+0 450 2
+0 4
+
+fn=(696)
+0 30
+
+fn=(714)
+0 14
+cfn=(716)
+calls=2 0 
+0 12
+0 4
+cfn=(718)
+calls=2 0 
+0 12
+0 4
+
+fn=(734)
+0 10
+cfn=(736)
+calls=1 0 
+0 7
+0 16
+
+fn=(794)
+0 9
+cfn=(784)
+calls=1 0 
+0 6
+0 11
+cob=(7)
+cfi=(7)
+cfn=(674)
+calls=1 0 
+0 207
+0 2
+
+fn=(796)
+0 10
+cfn=(736)
+calls=1 0 
+0 7
+0 8
+
+fn=(798)
+0 30
+cfn=(800)
+calls=2 0 
+0 380
+0 8
+
+fn=(810)
+0 22
+cfn=(812)
+calls=2 0 
+0 12
+0 8
+cfn=(812)
+calls=2 0 
+0 12
+0 8
+cfn=(812)
+calls=2 0 
+0 12
+0 8
+cfn=(814)
+calls=2 0 
+0 134
+0 10
+
+fn=(846)
+0 48
+cob=(4)
+cfi=(4)
+cfn=(852) pthread_create@@GLIBC_2.2.5
+calls=3 0 
+0 11615 5
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1284
+0 12
+
+fn=(930)
+0 2800000
+
+fn=(962)
+0 24
+cfn=(964)
+calls=3 0 
+0 320 3
+0 57
+cob=(3)
+cfi=(3)
+cfn=(970)
+calls=3 0 
+0 3345
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1316
+0 18
+
+fn=(1024)
+0 1400000
+cfn=(908)
+calls=100000 0 
+0 1800000
+0 800000
+cfn=(1026)
+calls=100000 0 
+0 26300000
+0 400000
+
+fn=(1030)
+0 1800000
+cfn=(1032)
+calls=100000 0 
+0 700000
+0 500000
+cob=(3)
+cfi=(3)
+cfn=(1012)
+calls=100000 0 
+0 1700000
+0 1200000
+
+fn=(1072)
+0 7
+cfn=(1074)
+calls=1 0 
+0 14
+0 2
+
+fn=(1076)
+0 5
+
+fn=(1098)
+0 8
+
+fn=(1130)
+0 20
+cfn=(1132)
+calls=2 0 
+0 1355 2 2
+0 4
+
+fn=(1140)
+0 14
+
+fn=(1166) 0x0000000000400ed0
+0 18
+
+ob=(2)
+fl=(2)
+fn=(268)
+0 2
+cob=(6)
+cfi=(6)
+cfn=(270)
+calls=1 0 
+0 6
+0 1
+cob=(6)
+cfi=(6)
+cfn=(276)
+calls=1 0 
+0 6
+0 1
+cob=(6)
+cfi=(6)
+cfn=(282)
+calls=1 0 
+0 11
+0 2
+
+fn=(940) strerror_thread_freeres
+0 9
+cob=(1)
+cfi=(1)
+cfn=(944)
+calls=3 0 
+0 48
+0 9
+cob=(3)
+cfi=(3)
+cfn=(534)
+calls=3 0 
+0 21
+
+fn=(948) __rpc_thread_destroy
+0 33
+
+fn=(946) res_thread_freeres
+0 36
+
+fn=(1198)
+0 2
+cob=(7)
+cfi=(7)
+cfn=(1200) 0x0000000000056410
+calls=1 0 
+0 1567
+0 2
+
+fn=(1240)
+0 2
+cob=(5) /lib64/libgcc_s-4.4.7-20120601.so.1
+cfi=(5) ???
+cfn=(1242) 0x0000000000002930
+calls=1 0 
+0 1524
+0 2
+
+fn=(288)
+0 2
+cob=(7)
+cfi=(7)
+cfn=(290) 0x00000000000563f0
+calls=1 0 
+0 6
+0 1
+cob=(7)
+cfi=(7)
+cfn=(296) 0x0000000000056490
+calls=1 0 
+0 6
+0 1
+cob=(7)
+cfi=(7)
+cfn=(302) 0x00000000000c3360
+calls=1 0 
+0 1839
+0 2
+
+fn=(248)
+0 2
+cob=(5)
+cfi=(5)
+cfn=(250) 0x0000000000002910
+calls=1 0 
+0 6
+0 1
+cob=(5)
+cfi=(5)
+cfn=(256) 0x00000000000029b0
+calls=1 0 
+0 6
+0 1
+cob=(5)
+cfi=(5)
+cfn=(262) 0x0000000000012f40
+calls=1 0 
+0 11
+0 2
+
+fn=(418)
+0 2
+cob=(8) /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+cfi=(8) ???
+cfn=(420) 0x0000000000000490
+calls=1 0 
+0 6
+0 1
+cob=(8)
+cfi=(8)
+cfn=(426) 0x0000000000000530
+calls=1 0 
+0 6
+0 1
+cob=(8)
+cfi=(8)
+cfn=(432) 0x00000000000006d0
+calls=1 0 
+0 11
+0 2
+
+ob=(3)
+fl=(3)
+fn=(242)
+0 47
+
+fn=(504)
+0 24
+cfn=(506)
+calls=1 0 
+0 23
+0 2
+
+fn=(626)
+0 9
+0 0 3
+
+ob=(2)
+fl=(2)
+fn=(1260)
+0 2
+cob=(4)
+cfi=(4)
+cfn=(1262) 0x0000000000005760
+calls=1 0 
+0 1524
+0 2
+
+fn=(936) __libc_thread_freeres
+0 27
+cfn=(938) arena_thread_freeres
+calls=3 0 
+0 18
+0 9
+cfn=(948)
+calls=3 0 
+0 33
+cfn=(946)
+calls=3 0 
+0 36
+cfn=(940)
+calls=3 0 
+0 87
+0 48
+
+fn=(1174)
+0 2
+cob=(8)
+cfi=(8)
+cfn=(1176) 0x00000000000004b0
+calls=1 0 
+0 1032
+0 2
+
+fn=(166)
+0 2
+cob=(4)
+cfi=(4)
+cfn=(168) __pthread_initialize_minimal
+calls=1 0 
+0 8374 8
+0 1
+cob=(4)
+cfi=(4)
+cfn=(216) 0x00000000000057e0
+calls=1 0 
+0 6
+0 1
+cob=(4)
+cfi=(4)
+cfn=(222) 0x0000000000011090
+calls=1 0 
+0 11
+0 2
+
+fn=(938)
+0 18
+
+fn=(1220)
+0 2
+cob=(6)
+cfi=(6)
+cfn=(1222)
+calls=1 0 
+0 1524
+0 2
+
+fn=(452)
+0 2
+cob=(9)
+cfi=(9)
+cfn=(454)
+calls=1 0 
+0 6
+0 1
+cob=(9)
+cfi=(9)
+cfn=(460)
+calls=1 0 
+0 6
+0 1
+cob=(9)
+cfi=(9)
+cfn=(466)
+calls=1 0 
+0 11
+0 2
+
+ob=(3)
+fl=(3)
+fn=(626)
+0 9
+
+fn=(832)
+0 60
+cob=(10)
+cfi=(10)
+cfn=(834)
+calls=12 176 
+0 36 12
+0 48
+
+fn=(1010)
+0 7
+
+ob=(2)
+fl=(2)
+fn=(1164)
+0 2
+cob=(9)
+cfi=(9)
+cfn=(1166)
+calls=1 0 
+0 18
+0 2
+
+ob=(7)
+fl=(7)
+fn=(386) 0x000000000005f5b0
+0 1
+
+fn=(1058)
+0 9
+cob=(3)
+cfi=(3)
+cfn=(534)
+calls=3 0 
+0 252
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1253
+
+fn=(1200)
+0 10
+cob=(3)
+cfi=(3)
+cfn=(1188)
+calls=1 0 
+0 123
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1421
+0 13
+
+fn=(1210)
+0 4
+
+fn=(306) 0x00000000000bb470
+0 21
+
+fn=(372) 0x0000000000069d60
+0 8
+cob=(3)
+cfi=(3)
+cfn=(380)
+calls=1 0 
+0 60
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1391
+0 7
+cob=(3)
+cfi=(3)
+cfn=(380)
+calls=1 0 
+0 62
+
+fn=(296)
+0 6
+
+fn=(318) 0x00000000000b6160
+0 1
+
+fn=(346) 0x000000000007d3d0
+0 49
+
+fn=(290)
+0 6
+
+fn=(302)
+0 11
+cfn=(306)
+calls=1 0 
+0 21
+0 16
+cfn=(390) 0x0000000000058170
+calls=1 0 
+0 79
+cfn=(388) 0x000000000005bcc0
+calls=1 0 
+0 1
+cfn=(386)
+calls=1 0 
+0 1
+cfn=(372)
+calls=1 0 
+0 1528
+cfn=(346)
+calls=1 0 
+0 49
+cfn=(320) 0x00000000000a02b0
+calls=1 0 
+0 49
+cfn=(318)
+calls=1 0 
+0 1
+cfn=(316) 0x00000000000bad80
+calls=1 0 
+0 52
+0 31
+
+fn=(674)
+0 36
+cob=(3)
+cfi=(3)
+cfn=(560)
+calls=4 0 
+0 768
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1347
+0 24
+
+fn=(388)
+0 1
+
+fn=(390)
+0 79
+
+fn=(320)
+0 49
+
+fn=(1212)
+0 4
+
+fn=(316)
+0 52
+
+ob=(4)
+fl=(4)
+fn=(1150)
+0 9
+
+fn=(958) _pthread_cleanup_pop
+0 15
+
+fn=(894) __pthread_enable_asynccancel
+0 33
+
+fn=(170) __libc_sigaction
+0 112
+0 0 2
+0 16
+
+fn=(500)
+0 108
+
+fn=(892) _pthread_cleanup_push
+0 18
+
+fn=(1262)
+0 10
+cob=(3)
+cfi=(3)
+cfn=(1188)
+calls=1 0 
+0 80
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1421
+0 13
+
+fn=(216)
+0 6
+
+fn=(572)
+0 1500052
+
+fn=(956) __pthread_disable_asynccancel
+0 36
+
+fn=(222)
+0 11
+
+fn=(570)
+0 1900046
+
+fn=(890)
+0 63
+cfn=(892)
+calls=3 0 
+0 18
+0 3
+cfn=(894)
+calls=3 0 
+0 33
+0 39
+cfn=(956)
+calls=3 0 
+0 36
+0 9
+cfn=(958)
+calls=3 0 
+0 15
+0 15
+cfn=(960) __free_tcb
+calls=3 0 
+0 126
+0 48
+
+fn=(896)
+0 25
+0 0 1
+0 7
+cob=(3)
+cfi=(3)
+cfn=(472)
+calls=1 0 
+0 29
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1301
+0 10
+cob=(9)
+cfi=(9)
+cfn=(902)
+calls=1 0 
+0 44701347
+0 6
+cob=(2)
+cfi=(2)
+cfn=(936)
+calls=1 0 
+0 86
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1571
+0 10
+cob=(3)
+cfi=(3)
+cfn=(566)
+calls=1 0 
+0 6
+0 17
+cob=(3)
+cfi=(3)
+cfn=(883)
+calls=1 0 
+0 58704564 8 591
+0 0 2 430
+0 3
+cob=(3)
+cfi=(3)
+cfn=(954)
+calls=1 0 
+0 5 1
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1309
+0 1
+
+fn=(897)
+0 50
+0 0 2
+0 14
+cob=(3)
+cfi=(3)
+cfn=(472)
+calls=2 0 
+0 58
+0 20
+cob=(9)
+cfi=(9)
+cfn=(1014)
+calls=1 0 
+0 43102805
+cob=(9)
+cfi=(9)
+cfn=(1002)
+calls=1 0 
+0 15601334
+0 12
+cob=(2)
+cfi=(2)
+cfn=(936)
+calls=2 0 
+0 172
+0 20
+cob=(3)
+cfi=(3)
+cfn=(566)
+calls=2 0 
+0 12
+0 31
+cob=(3)
+cfi=(3)
+cfn=(883)
+calls=1 0 
+0 43103016 4 427
+0 0 4 591
+0 6
+cob=(3)
+cfi=(3)
+cfn=(954)
+calls=2 0 
+0 10 2
+0 2
+
+fn=(514)
+0 90
+
+fn=(618)
+0 32
+
+fn=(852)
+0 45
+cob=(3)
+cfi=(3)
+cfn=(566)
+calls=3 0 
+0 18
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1407
+0 232
+cob=(3)
+cfi=(3)
+cfn=(688)
+calls=2 0 
+0 122
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1311
+0 4
+cob=(1)
+cfi=(1)
+cfn=(154)
+calls=2 0 
+0 402
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1668
+0 192
+cfn=(876) do_clone.clone.0
+calls=3 0 
+0 1458 3
+0 56
+cob=(3)
+cfi=(3)
+cfn=(874)
+calls=1 0 
+0 5 1
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1342
+0 24
+cob=(3)
+cfi=(3)
+cfn=(626)
+calls=1 0 
+0 6 1
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1262
+0 23
+cob=(1)
+cfi=(1)
+cfn=(866)
+calls=1 0 
+0 501
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1514
+0 23
+
+fn=(876)
+0 60
+cob=(3)
+cfi=(3)
+cfn=(882)
+calls=3 0 
+0 54 3
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1311
+0 33
+
+fn=(168)
+0 10
+0 0 1
+0 15
+0 0 1
+0 6
+0 0 1
+0 15
+0 0 1
+0 46
+cfn=(170)
+calls=1 0 
+0 64 1
+0 7
+cfn=(170)
+calls=1 0 
+0 64 1
+0 8
+0 0 1
+0 3
+cob=(1)
+cfi=(1)
+cfn=(182)
+calls=1 0 
+0 5
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1618
+0 15
+cob=(3)
+cfi=(3)
+cfn=(188)
+calls=1 0 
+0 223
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1423
+0 6
+cob=(3)
+cfi=(3)
+cfn=(198)
+calls=1 0 
+0 5 1
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1326
+0 16
+cob=(3)
+cfi=(3)
+cfn=(204)
+calls=1 0 
+0 3
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1501
+0 2
+cob=(1)
+cfi=(1)
+cfn=(66)
+calls=1 0 
+0 2
+0 22
+cob=(3)
+cfi=(3)
+cfn=(210)
+calls=1 0 
+0 453
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1501
+0 15
+
+fn=(960)
+0 126
+
+ob=(5)
+fl=(5)
+fn=(256)
+0 6
+
+fn=(250)
+0 6
+
+fn=(262)
+0 11
+
+fn=(1242)
+0 10
+cob=(3)
+cfi=(3)
+cfn=(1188)
+calls=1 0 
+0 80
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 1421
+0 13
+
+ob=(8)
+fl=(8)
+fn=(426)
+0 6
+
+fn=(1176)
+0 10
+cob=(3)
+cfi=(3)
+cfn=(1188)
+calls=1 0 
+0 80
+cob=(1)
+cfi=(1)
+cfn=(178)
+calls=1 0 
+0 929
+0 13
+
+fn=(420)
+0 6
+
+fn=(432)
+0 11
+
+totals: 111600267 118 1057

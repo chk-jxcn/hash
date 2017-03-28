@@ -116,16 +116,19 @@ private:
 
 struct HashTestData
 {
-    HashTestData(HashHandle handle, int start, int count)
+    void Init(HashHandle handle, int start, int count)
     {
         handle_ = handle;
         start_ = start;
+        end_ = start_ + count;
         count_ = count;
         memset(&stat, 0, sizeof(stat));
     }
+    HashHandle handle_;
     int start_;
     int count_;
-    HashHandle handle_;
+    int end_;
+    
     struct Stat
     {
         int insert;
@@ -153,7 +156,8 @@ static void* thread_func_insert(void* ptr)
 {
     HashTestData* test_data = (HashTestData*)ptr;
 
-    for(int i = test_data->start_; i < test_data->count_; ++i)
+
+    for(int i = test_data->start_; i < test_data->end_; ++i)
     {
         //fprintf(stderr, "insert %d\r\n", i);
         test_data->stat.insert ++;
@@ -167,7 +171,7 @@ static void* thread_func_find(void* ptr)
     HashTestData* test_data = (HashTestData*)ptr;
     int temp;
 
-    for(int i = test_data->start_; i < test_data->count_; ++i)
+    for(int i = test_data->start_; i < test_data->end_; ++i)
     {
         //fprintf(stderr, "find %d\r\n", i);
         test_data->stat.find ++;
@@ -185,7 +189,7 @@ static void* thread_func_erase(void* ptr)
 {
     HashTestData* test_data = (HashTestData*)ptr;
 
-    for(int i = test_data->start_; i < test_data->count_; ++i)
+    for(int i = test_data->start_; i < test_data->end_; ++i)
     {
         //fprintf(stderr, "erase %d\r\n", i);
         test_data->stat.erase ++;
@@ -208,6 +212,7 @@ public:
         insert_ = thread_func_insert;
         find_ = thread_func_find;
         erase_ = thread_func_erase;
+        test_all_ = 0;
     }
     virtual ~HashPerformanceTest(void)
     {
@@ -217,13 +222,17 @@ public:
         }
     }
     void Init(int thread_count, int data_count, HashHandle handle = 0)
-    {
+    {      
         data_count_ = data_count  < 8 ? 8 : data_count;
         thread_count_ = thread_count < 1 ? 1 : thread_count;
         handle_ = handle;
         int count_per_thread = data_count_ / thread_count_;
         test_datas_.clear();
-
+        if(test_all_) {
+            delete test_all_;
+        }
+        test_all_ = new HashTestData;
+        test_all_->Init(handle_, 0, data_count_);
         for(int i = 0; i < (int)thread_.size(); ++i)
         {
             delete thread_[i];
@@ -233,7 +242,9 @@ public:
 
         for(int i = 0; i < thread_count_; ++i)
         {
-            test_datas_.push_back(HashTestData(handle_, i * count_per_thread, count_per_thread));
+            HashTestData data;
+            data.Init(handle_, i * count_per_thread, count_per_thread);
+            test_datas_.push_back(data);
             thread_.push_back(new T());
         }
     }
@@ -245,21 +256,19 @@ public:
     }
     void DoTest()
     {
+        if(!test_all_) {
+            fprintf(stderr, "not Init();\r\n");
+            return ;
+        }
         HaStopWatch watch;
         watch.Start();
         int lost = 0;
         int count = 0;
         fprintf(stderr, "===============begin==============\r\n");
-
-        for(int i = 0; i < thread_count_; ++i)
-        {
-            thread_[i]->Start(insert_, test_datas_[i]);
-        }
-
-        for(int i = 0; i < thread_count_; ++i)
-        {
-            thread_[i]->Join();
-        }
+        
+        
+        thread_[0]->Start(insert_, *test_all_);
+        thread_[0]->Join();
 
         fprintf(stderr, "insert cost: %s\r\n", watch.GetPastMicrosec());
         watch.ReStart();
@@ -277,15 +286,8 @@ public:
         fprintf(stderr, "  find cost: %s\r\n", watch.GetPastMicrosec());
         watch.ReStart();
 
-        for(int i = 0; i < thread_count_; ++i)
-        {
-            thread_[i]->Start(erase_, test_datas_[i]);
-        }
-
-        for(int i = 0; i < thread_count_; ++i)
-        {
-            thread_[i]->Join();
-        }
+        thread_[0]->Start(erase_, *test_all_);
+        thread_[0]->Join();
 
         fprintf(stderr, " erase cost: %s\r\n", watch.GetPastMicrosec());
 
@@ -303,6 +305,7 @@ private:
     int data_count_;
     int thread_count_;
     HashHandle handle_;
+    HashTestData* test_all_;
     std::vector<HashTestData> test_datas_;
     std::vector<HashThread*> thread_;
     func_thread insert_;
@@ -324,11 +327,8 @@ void PrintHashInfo(HashHandle handle)
 void PrintHashStat(void)
 {
     fprintf(stderr, "vmalloc:%d,  vfree:%d, kmalloc:%d, kfree:%d\r\n",
-        stat_item_value(&g_stat.vmalloc), stat_item_value(&g_stat.vfree),
-        stat_item_value(&g_stat.kmalloc), stat_item_value(&g_stat.kfree));
+        g_stat.vmalloc, g_stat.vfree,g_stat.kmalloc, g_stat.kfree);
     fprintf(stderr, "stat: m_fail:%d, i_fail:%d: i_conf:%d, ei_fail:%d\r\n",
-        stat_item_value(&g_stat.malloc_failed),
-        stat_item_value(&g_stat.insert_failed),
-        stat_item_value(&g_stat.insert_conflict),
-        stat_item_value(&g_stat.insert_failed_when_expand));
+        g_stat.malloc_failed,g_stat.insert_failed,
+        g_stat.insert_conflict,g_stat.insert_failed_when_expand);
 }
